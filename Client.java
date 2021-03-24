@@ -15,6 +15,7 @@ public class Client {
   public  String DNI;
 
 
+
   public Client(){
 
   }
@@ -25,21 +26,23 @@ public class Client {
         this.nom=info[0];
         this.cognom1=info[1];
         this.cognom2=info[2];
-        this.NIF=info[3];
+        this.DNI=info[3];
+        this.NIF=DNI;
 
     this.nom=nom;
     this.cognom1=cognom1;
     this.cognom2=cognom2;
     this.NIF=NIF;
+    this.NIF=DNI;
 
   }
 
   public String toString(){
 
-      return this.nom+" "+this.cognom1+" "+this.cognom2+" "+this.NIF;
+      return this.nom+" "+this.cognom1+" "+this.cognom2+" "+this.DNI;
   }
 
-  public String getNom() {
+  /*public String getNom() {
       return nom;
   }
 
@@ -61,5 +64,5 @@ public class Client {
 
   public void setCognom2(String cognom2) {
       this.cognom2 = cognom2;
-  }
+  }*/
 }

@@ -1,4 +1,8 @@
+
+
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Tenda {
@@ -6,6 +10,8 @@ public class Tenda {
     public Scanner sc= new Scanner(System.in);
     public String[] oMenu;
 
+
+        Agenda a=new Agenda();
         public static void main (String[]args) {
             Tenda t = new Tenda();
             Agenda a=new Agenda();
@@ -25,6 +31,7 @@ public class Tenda {
 
 
     public void triaOpcio(){
+        Tenda t=new Tenda();
         Agenda a = new Agenda();
         Compra cm = new Compra();
         Estoc es= new Estoc();
@@ -51,10 +58,7 @@ public class Tenda {
 
                 case 2:
                     System.out.println("[ 2 ] Donar de baixa a un client");
-
-                    System.out.println("█████ Actualment Anulada aquesta opcio █████");
-                    es.carregaElectrodomestics();
-                    es.llistarElectrodomestics();
+                    a.baixaClient(cl.DNI);
                     break;
 
                 case 3:
@@ -81,7 +85,9 @@ public class Tenda {
                  case  6:
                     System.out.println("[ 6 ] Mostrar llista de clients\n");
                     System.out.println("Nom ██ Cognoms ████████ NIF\n");
-                    a.llistaClients();
+                    t.mostrarClients();
+                    //a.getLlistaClients();
+
                     break;
                 default:
                     System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 6 : ");
@@ -168,6 +174,17 @@ public class Tenda {
 
         } while (!(enter.isEmpty()));
 
+    }
+
+    public void mostrarClients(){
+        ArrayList<Client>llistaCli = a.getLlistaClients();
+
+        Iterator<Client>iterCli=llistaCli.iterator();
+        while (iterCli.hasNext()) {
+            Client c = new Client();
+            System.out.println(iterCli.next() + " ");
+            System.out.println("_________________________________/");
+        }
     }
 
 

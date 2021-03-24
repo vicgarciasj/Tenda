@@ -36,23 +36,7 @@ public class Estoc {
         es.carregaEstufes();
 
   }
-/*    try {
 
-      File fc= new File("electrodomestics.txt");
-      Scanner sc= new Scanner(fc);
-
-      while (sc.hasNextLine()){
-        String stLine= sc.nextLine();
-        Electrodomestic e= new Electrodomestic();
-        llistaElect.add(e);
-
-
-      }
-    }catch (FileNotFoundException e){
-      System.out.println("Error");
-    }
-    return null;
-  }*/
 
 
   public void donarAlta(Electrodomestic e) {

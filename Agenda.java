@@ -53,31 +53,40 @@ public class Agenda {
         System.out.print("Introdueix el segon cognom  del Client: ");
         c.cognom2=sc.nextLine();
         System.out.print("Introdueix el NIF: ");
-        c.NIF=sc.nextLine();
+        c.DNI=sc.nextLine();
         System.out.println("██████████████████████████████████████████████");
-        System.out.println("Nou Client: "+c.nom+" "+c.cognom1+" "+c.cognom2+" amb NIF:"+c.NIF);
+        System.out.println("Nou Client: "+c.nom+" "+c.cognom1+" "+c.cognom2+" amb DNI:"+c.DNI);
+        System.out.println("██████████████████████████████████████████████");
 
         this.llistaCli.add(c);
 
     }
 
-    public void baixaClient(String NIF) {
-        ArrayList<Client>llistaCli = new ArrayList<Client>();
-
-
-    }
-
-
-
-    public void llistaClients() {
-
-        iterCli = llistaCli.iterator();
-        while (iterCli.hasNext()) {
-            System.out.println(iterCli.next() + " ");
-            System.out.println("_________________________________/");
-
+    public Boolean baixaClient(String NIF) {
+        Iterator<Client>iter;
+        iter=this.llistaCli.iterator();
+        while (iter.hasNext()){
+            Client c=new Client();
+            c=iter.next();
+            if (c.NIF== c.DNI){
+                this.llistaCli.remove(c);
+                return true;
+            }
         }
-
+        return false;
 
     }
+
+
+
+    private ArrayList<Client> LlistaCli() {
+        return this.llistaCli;
+
+    }
+
+    public ArrayList<Client> getLlistaClients() {
+        return llistaCli;
+    }
+
+
 }
