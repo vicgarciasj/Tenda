@@ -39,7 +39,7 @@ public class Client {
 
   public String toString(){
 
-      return this.nom+" "+this.cognom1+" "+this.cognom2+" "+this.DNI;
+      return this.nom+" "+this.cognom1+" "+this.cognom2+" "+this.DNI ;
   }
 
   /*public String getNom() {

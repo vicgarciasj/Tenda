@@ -14,7 +14,7 @@ import java.util.Scanner;
 public class Agenda {
 
     ArrayList<Client>llistaCli = new ArrayList<Client>();
-    Iterator<Client>iterCli;
+    //Iterator<Client>iterCli;
 
 
     public Agenda () {
@@ -32,7 +32,7 @@ public class Agenda {
             while (sc.hasNextLine()){
                 String strLine= sc.nextLine();
                 Client c= new Client(strLine);
-                llistaCli.add(c);
+                LlistaCli().add(c);
             }
             sc.close();
         }catch (FileNotFoundException e){
