@@ -42,7 +42,7 @@ public class Client {
       return this.nom+" "+this.cognom1+" "+this.cognom2+" "+this.DNI ;
   }
 
-  /*public String getNom() {
+  public String getNom() {
       return nom;
   }
 
@@ -64,5 +64,5 @@ public class Client {
 
   public void setCognom2(String cognom2) {
       this.cognom2 = cognom2;
-  }*/
+  }
 }

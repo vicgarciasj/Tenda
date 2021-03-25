@@ -14,8 +14,8 @@ public class Estufa extends Electrodomestic{
 
 
   public String potencia;
-  public String infoEst[];
-  Estoc estoc=new Estoc();
+  public String infoEst[]=new String[7];
+
 
   Iterator<Estufa> iterEst;
 
@@ -23,38 +23,32 @@ public class Estufa extends Electrodomestic{
 
 
   }
-  public Estufa carregaEstufes() {
-    try {
 
-
-      File fe= new File("estufes.txt");
-      Scanner sc= new Scanner(fe);
-
-      while (sc.hasNextLine()){
-        String strLine= sc.nextLine();
-        Estufa estufa= new Estufa(strLine);
-        estoc.llistaLEstufes.add(estufa);
-      }
-      sc.close();
-    }catch (FileNotFoundException e){
-      System.out.println("Error");
-    }
-    return null;
-  }
 
 
 
 
   public Estufa ( String str) {
 
-    String info[] =str.split(";");
+    String infoEst[] =str.split(";");
     this.potencia=infoEst[0];
     this.numRef=infoEst[1];
     this.PVP=Double.parseDouble(infoEst[2]);
     this.marca=infoEst[3];
     this.model=infoEst[4];
     this.EE=infoEst[5];
-    this.quantitat=Integer.parseInt(infoEst[6]);
+    this.quantitat=Integer.parseInt(infoEst[0]);
+
+
+    this.potencia=potencia;
+    this.numRef=numRef;
+    this.PVP=PVP;
+    this.marca=marca;
+    this.model=model;
+    this.EE=EE;
+    this.quantitat=quantitat;
+
+
 
 
 

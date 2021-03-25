@@ -4,6 +4,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -14,7 +15,7 @@ import java.util.Scanner;
 public class Agenda {
 
     ArrayList<Client>llistaCli = new ArrayList<Client>();
-    //Iterator<Client>iterCli;
+
 
 
     public Agenda () {
@@ -32,11 +33,11 @@ public class Agenda {
             while (sc.hasNextLine()){
                 String strLine= sc.nextLine();
                 Client c= new Client(strLine);
-                LlistaCli().add(c);
+                llistaCli.add(c);
             }
             sc.close();
         }catch (FileNotFoundException e){
-            System.out.println("Error clients");
+            System.out.println("Error  al carregar clients");
         }
         return null;
     }
@@ -58,9 +59,14 @@ public class Agenda {
         System.out.println("Nou Client: "+c.nom+" "+c.cognom1+" "+c.cognom2+" amb DNI:"+c.DNI);
         System.out.println("██████████████████████████████████████████████");
 
-        this.llistaCli.add(c);
+        llistaCli.add(c);
+        getLlistaClients();
+
+
 
     }
+
+
 
     public Boolean baixaClient(String NIF) {
         Iterator<Client>iter;
@@ -80,6 +86,7 @@ public class Agenda {
 
 
     private ArrayList<Client> LlistaCli() {
+
         return this.llistaCli;
 
     }
@@ -87,6 +94,7 @@ public class Agenda {
     public ArrayList<Client> getLlistaClients() {
         return llistaCli;
     }
+
 
 
 }

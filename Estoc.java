@@ -3,6 +3,8 @@
 
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -14,32 +16,40 @@ import java.util.Iterator;
 public class Estoc {
   private String tip;
 
-    ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
-    ArrayList<Estufa> llistaLEstufes= new ArrayList<Estufa>();
-  ArrayList<Forn> llistaForn = new ArrayList<Forn>();
-  ArrayList<Microones> llistaMicroones = new ArrayList<Microones>();
-  ArrayList<Llavadora> llistaLlavadores = new ArrayList<Llavadora>();
-  ArrayList<Televisio> llistaTelevisions = new ArrayList<Televisio>();
-  ArrayList<Nevera> llistaNevera = new ArrayList<Nevera>();
+    private ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
+    private ArrayList<Estufa> llistaEstufes= new ArrayList<Estufa>();
+    private ArrayList<Forn> llistaForn = new ArrayList<Forn>();
+    private ArrayList<Microones> llistaMicroones = new ArrayList<Microones>();
+    private ArrayList<Llavadora> llistaLlavadores = new ArrayList<Llavadora>();
+    private ArrayList<Televisio> llistaTelevisions = new ArrayList<Televisio>();
+    private ArrayList<Nevera> llistaNevera = new ArrayList<Nevera>();
 
 
 
   Iterator<Electrodomestic> iterElect;
-
+  //Estoc estoc=new Estoc();
+  Estufa est=new Estufa();
+  Forn frn=new Forn();
+  Microones mcr= new Microones();
+  Llavadora ll =new Llavadora();
+  Televisio tv=new Televisio();
+  Nevera nv=new Nevera();
+   ;
 
 
     public Estoc () {
 
   }
   public void carregaElectrodomestics() {
-        Estufa es=new Estufa();
-        es.carregaEstufes();
+        carregaEstufes();
+
 
   }
 
 
 
-  public void donarAlta(Electrodomestic e) {
+  public void
+  donarAlta(Electrodomestic e) {
 
 
     Electrodomestic tipus = null;
@@ -54,7 +64,7 @@ public class Estoc {
           est.potencia=sc.nextLine();
           tip="Estufa";
           tipus=est;
-          this.llistaLEstufes.add(est);
+          //this.llistaLEstufes.add(est);
           break;
       case 2: //Forn
           Forn fr= new Forn();
@@ -137,6 +147,45 @@ public class Estoc {
         ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
   }
 
+    /**
+     *
+     * Carrega Estufes
+     */
+
+    public Estufa carregaEstufes() {
+        try {
+
+
+            File fe= new File("estufes.txt");
+            Scanner sc= new Scanner(fe);
+
+            while (sc.hasNextLine()){
+                String strLine= sc.nextLine();
+                Estufa estufa= new Estufa(strLine);
+                llistaEstufes.add(estufa);
+            }
+            sc.close();
+        }catch (FileNotFoundException e){
+            System.out.println("Error");
+        }
+        return null;
+    }
+
+    private ArrayList<Estufa> LlistaEst() {
+
+        return this.llistaEstufes;
+
+    }
+
+    public ArrayList<Estufa> getLlistaEstufes() {
+        return llistaEstufes;
+    }
+
+
+    /**
+     *
+     * Carrega Forns
+     */
 
 
 }

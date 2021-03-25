@@ -1,15 +1,15 @@
 
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.Scanner;
+import java.util.*;
 
 public class Tenda {
-    private static int numBusqueda=0;
+    private static int numBusquedaPrincipal,numBusquedaSecundari;
     public Scanner sc= new Scanner(System.in);
-    public String[] oMenu;
-
+    public String[] menuP;
+    public String[]menuAgenda;
+    public String[]menuEstoc;
+    public String[]menuCompres;
+    Client cl = new Client();
 
         Agenda a=new Agenda();
         public static void main (String[]args) {
@@ -19,35 +19,66 @@ public class Tenda {
             t.portada();
             do {
                 t.menu();
-                t.mostrarMenu();
-                a.carregaClients();
-                t.triaOpcio();
+                t.mostrarMenuPrincipal();
+                t.triaOpcioPrincipal();
                 t.tornarMenu();
-            } while (numBusqueda != 0);{
+            } while (numBusquedaPrincipal != 0);{
                 t.sc.close();
              }
 
         }
 
 
-    public void triaOpcio(){
+    public void triaOpcioPrincipal(){
         Tenda t=new Tenda();
         Agenda a = new Agenda();
         Compra cm = new Compra();
         Estoc es= new Estoc();
-        Client cl = new Client();
-        Estufa estufa=new Estufa();
         Electrodomestic elec= new Electrodomestic();
 
-
-            System.out.println("████████████████████████████████████████████");
-            System.out.print("███ Introdueix una Opcio entre el  1-6: ");
-            numBusqueda=sc.nextInt();
-            System.out.println("████████████████████████████████████████████");
-
+        System.out.println("████████████████████████████████████████████");
+        System.out.print("███ Introdueix una Opcio entre el  1-4: ");
+        numBusquedaPrincipal=sc.nextInt();
+        System.out.println("████████████████████████████████████████████");
 
 
-            switch (numBusqueda){
+        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 3)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            opcioBusquedaPrincipal();
+        }
+        switch (numBusquedaPrincipal){
+                case 1:
+                    System.out.println("Agenda");
+                    t.mostrarMenuAgenda();
+                    t.triaOpcioAgenda();
+                    break;
+                case 2:
+                    System.out.println("Estoc");
+                    t.menuEstoc();
+                    t.mostrarMenuEstoc();
+                    break;
+                case 3:
+                    System.out.println("Compres");
+                    t.menuCompres();
+                    t.mostraMenuCompres();
+
+                    break;
+                case 4:
+                    System.out.println("Eixir del programa");
+                    System.out.println("*********************");
+                    System.out.println("******* Fin de el programa **********");
+                    System.out.println("*********************");
+                    sc.close();
+                    break;
+                default:
+                    break;
+        }
+
+
+
+        switch (numBusquedaPrincipal){
                 case 0:
                     System.out.println("***/////////Fi del Programa/////////***");
                     break;
@@ -58,7 +89,10 @@ public class Tenda {
 
                 case 2:
                     System.out.println("[ 2 ] Donar de baixa a un client");
-                    a.baixaClient(cl.DNI);
+                    //a.baixaClient(cl.DNI);
+                    System.out.println(es.carregaEstufes());
+                    System.out.println(es.getLlistaEstufes().toString());
+                    System.out.println(es.est.toStringElect());
                     break;
 
                 case 3:
@@ -75,10 +109,33 @@ public class Tenda {
                     break;
 
                 case 5:
-                    System.out.println("[ 5 ] Consultar Stock");
-                    System.out.println("MOSTRAR ESTUFES");
-                    estufa.carregaEstufes();
-                    estufa.llistaEstufes();
+                    System.out.println("[ 5 ] Consultar Stock:\n[ 1 ]: Estufes\n[ 2 ]: Forns\n[ 3 ]: Llavadores\n[ 4 ]: Microones\n[ 5 ]: Neveres\n[ 6 ]: Televisors");
+
+                    //numBusqueda=sc.nextInt();
+                    switch (numBusquedaPrincipal){
+                        case 1: //Estufes
+                            System.out.println("Hi ha "+es.est.quantitat+" en aquest moment disponibles");
+                            break;
+                        case 2: //Forns
+                            System.out.println("Hi ha "+es.frn.quantitat+" en aquest moment disponibles");
+                            break;
+                        case 3: //Llavadores
+                            System.out.println("Hi ha "+es.ll.quantitat+" en aquest moment disponibles");
+                            break;
+                        case 4: // Microones
+                            System.out.println("Hi ha "+es.mcr.quantitat+" en aquest moment disponibles");
+                            break;
+                        case 5: //Neveres
+                            System.out.println("Hi ha "+es.nv.quantitat+" en aquest moment disponibles");
+                            break;
+                        case 6: //Televisors
+                            System.out.println("Hi ha "+es.tv.quantitat+" en aquest moment disponibles");
+                            break;
+                        default:
+                            System.out.println("Valor incorecte");
+                            break;
+                    }
+
 
                     break;
 
@@ -86,7 +143,8 @@ public class Tenda {
                     System.out.println("[ 6 ] Mostrar llista de clients\n");
                     System.out.println("Nom ██ Cognoms ████████ NIF\n");
                     t.mostrarClients();
-                    //a.getLlistaClients();
+
+
 
                     break;
                 default:
@@ -95,26 +153,99 @@ public class Tenda {
 
                     break;
         }
+}
+
+    private void mostraMenuCompres() {
+        menuAgenda();
+        for (int i = 0; i < menuCompres.length; i++) {
+
+
+            System.out.println(" [  "  + (i+1) + " ] " + menuCompres[i]);
+
+            System.out.println("___________________________________/");
         }
-
-
-
-
-
-
-    public void menu() {
-
-        oMenu = new String[6];
-
-        oMenu[0] = "Donar de alta a un client";
-        oMenu[1] = "Donar de baixa a un client";
-        oMenu[2] = "Donar de alta un nou Elecrodomestic";
-        oMenu[3] = "Comprar electrodomesrics";
-        oMenu[4] = "Consultar Stock";
-        oMenu[5] = "Mostrar llista de clients";
     }
 
-    public void mostrarMenu() {
+    private void triaOpcioAgenda() {
+            switch (numBusquedaSecundari){
+                case 1:
+                    System.out.println("Mostrar Clients");
+                    break;
+                case 2:
+                    System.out.println("Editar Clients");
+                    break;
+                case 3:
+                    System.out.println("Donar de Baixa un Client");
+                    break;
+                case 4:
+                    System.out.println("Donar de alta un Client");
+                    break;
+                default:
+                    break;
+            }
+    }
+
+    private void mostrarMenuEstoc() {
+            menuAgenda();
+        for (int i = 0; i < menuEstoc.length; i++) {
+
+
+            System.out.println(" [  "  + (i+1) + " ] " + menuAgenda[i]);
+
+            System.out.println("___________________________________/");
+        }
+    }
+
+    private void mostrarMenuAgenda() {
+            menuAgenda();
+        for (int i = 0; i < menuAgenda.length; i++) {
+
+
+            System.out.println(" [  "  + (i+1) + " ] " + menuAgenda[i]);
+
+            System.out.println("___________________________________/");
+        }
+    }
+
+    private int opcioBusquedaPrincipal(){
+            int numBusquedaPrincipal;
+            numBusquedaPrincipal=sc.nextInt();
+            return numBusquedaPrincipal;
+    }
+
+    public void menu() {
+        menuP =new String[4];
+        menuP[0]="Agenda";
+        menuP[1]="Estoc";
+        menuP[2]="Compres";
+        menuP[3]="Eixir";
+
+    }
+    public void menuAgenda() {
+        menuAgenda=new String[4];
+        menuAgenda[0]="Mostrar Clients";
+        menuAgenda[1]="Editar Clients";
+        menuAgenda[2]="Esborrar Client";
+        menuAgenda[3]="Alta Client";
+    }
+    public void menuEstoc() {
+        menuEstoc=new String[4];
+        menuEstoc[0]="Mostrar Estoc";
+        menuEstoc[1]="Editar Electrodomestics";
+        menuEstoc[2]="Esborrar Electrodomestics";
+        menuEstoc[3]="Alta Electrodomestics";
+    }
+
+    public void menuCompres() {
+        menuCompres=new String[2];
+        menuCompres[0]="Mostrar Compres";
+        menuCompres[1]="Mostra Commpra";
+    }
+
+
+
+
+    public void mostrarMenuPrincipal() {
         System.out.println();
         System.out.println("█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗\n" +
                 "╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
@@ -130,10 +261,10 @@ public class Tenda {
         System.out.println("█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗\n" +
                 "╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
         System.out.println();
-        for (int i = 0; i < oMenu.length; i++) {
+        for (int i = 0; i < menuP.length; i++) {
 
 
-            System.out.println(" [  "  + (i+1) + " ] " + oMenu[i]);
+            System.out.println(" [  "  + (i+1) + " ] " + menuP[i]);
 
             System.out.println("___________________________________/" +
                     "                                                                                                       ");
@@ -169,7 +300,9 @@ public class Tenda {
         String enter;
 
         do {
+            System.out.println("_________________________________");
             System.out.println(" 'Enter' per a tornar al menu ");
+            System.out.println("_________________________________/");
             enter = e.nextLine();
 
         } while (!(enter.isEmpty()));
