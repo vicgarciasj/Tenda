@@ -106,7 +106,7 @@ public class Tenda {
     }
 
 
-    private void triaOpcioAgenda() {
+    private void triaOpcioAgenda() {      //Seleciona la opcio de la agenda que es vol utlitzar
             switch (numBusquedaSecundari){
                 case 1:
                     System.out.println("Mostrar Clients");
