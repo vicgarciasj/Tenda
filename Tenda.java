@@ -3,9 +3,10 @@
 import java.util.*;
 
 public class Tenda {
-    private static int numBusquedaPrincipal,numBusquedaSecundari;
+    private static int numBusquedaPrincipal,numBusquedaSecundari,numBusqueda;
     public Scanner sc= new Scanner(System.in);
     public String[] menuP;
+    public String[] mEstoc;
     public String[]menuAgenda;
     public String[]menuEstoc;
     public String[]menuCompres;
@@ -18,7 +19,7 @@ public class Tenda {
 
             t.portada();
             do {
-                t.menu();
+                t.cargarMenus();
                 t.mostrarMenuPrincipal();
                 t.triaOpcioPrincipal();
                 t.tornarMenu();
@@ -31,8 +32,6 @@ public class Tenda {
 
     public void triaOpcioPrincipal(){
         Tenda t=new Tenda();
-        Agenda a = new Agenda();
-        Compra cm = new Compra();
         Estoc es= new Estoc();
         Electrodomestic elec= new Electrodomestic();
 
@@ -42,7 +41,7 @@ public class Tenda {
         System.out.println("████████████████████████████████████████████");
 
 
-        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 3)) {
+        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
 
             System.out.println("Opcio incorecta. Introdueix un altre valor: ");
 
@@ -56,12 +55,12 @@ public class Tenda {
                     break;
                 case 2:
                     System.out.println("Estoc");
-                    t.menuEstoc();
                     t.mostrarMenuEstoc();
+                    t.triaOpcioEstoc();
+                    t.mostrarEstoc();
                     break;
                 case 3:
                     System.out.println("Compres");
-                    t.menuCompres();
                     t.mostraMenuCompres();
 
                     break;
@@ -75,101 +74,44 @@ public class Tenda {
                 default:
                     break;
         }
+    }
 
-
+    private void mostrarEstoc() {
+            Estoc es=new Estoc();
 
         switch (numBusquedaPrincipal){
-                case 0:
-                    System.out.println("***/////////Fi del Programa/////////***");
-                    break;
-                case 1:
-                    System.out.println("[ 1 ] Donar de alta a un client");
-                    a.altaClient(cl);
-                    break;
-
-                case 2:
-                    System.out.println("[ 2 ] Donar de baixa a un client");
-                    //a.baixaClient(cl.DNI);
-                    System.out.println(es.carregaEstufes());
-                    System.out.println(es.getLlistaEstufes().toString());
-                    System.out.println(es.est.toStringElect());
-                    break;
-
-                case 3:
-                    System.out.println("[ 3 ] Donar de alta a un nou Electrodomestic");
-                    es.donarAlta(elec);
-
-
-                    break;
-
-                 case 4:
-                    System.out.println("[ 4 ] Comprar electrodomesrics");
-                    System.out.println("█████ Actualment Anulada aquesta opcio █████");
-                    cm.setTotal(100);
-                    break;
-
-                case 5:
-                    System.out.println("[ 5 ] Consultar Stock:\n[ 1 ]: Estufes\n[ 2 ]: Forns\n[ 3 ]: Llavadores\n[ 4 ]: Microones\n[ 5 ]: Neveres\n[ 6 ]: Televisors");
-
-                    //numBusqueda=sc.nextInt();
-                    switch (numBusquedaPrincipal){
-                        case 1: //Estufes
-                            System.out.println("Hi ha "+es.est.quantitat+" en aquest moment disponibles");
-                            break;
-                        case 2: //Forns
-                            System.out.println("Hi ha "+es.frn.quantitat+" en aquest moment disponibles");
-                            break;
-                        case 3: //Llavadores
-                            System.out.println("Hi ha "+es.ll.quantitat+" en aquest moment disponibles");
-                            break;
-                        case 4: // Microones
-                            System.out.println("Hi ha "+es.mcr.quantitat+" en aquest moment disponibles");
-                            break;
-                        case 5: //Neveres
-                            System.out.println("Hi ha "+es.nv.quantitat+" en aquest moment disponibles");
-                            break;
-                        case 6: //Televisors
-                            System.out.println("Hi ha "+es.tv.quantitat+" en aquest moment disponibles");
-                            break;
-                        default:
-                            System.out.println("Valor incorecte");
-                            break;
-                    }
-
-
-                    break;
-
-                 case  6:
-                    System.out.println("[ 6 ] Mostrar llista de clients\n");
-                    System.out.println("Nom ██ Cognoms ████████ NIF\n");
-                    t.mostrarClients();
-
-
-
-                    break;
-                default:
-                    System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 6 : ");
-                    sc.next();
-
-                    break;
-        }
-}
-
-    private void mostraMenuCompres() {
-        menuAgenda();
-        for (int i = 0; i < menuCompres.length; i++) {
-
-
-            System.out.println(" [  "  + (i+1) + " ] " + menuCompres[i]);
-
-            System.out.println("___________________________________/");
+            case 1: //Estufes
+                System.out.println("Hi ha "+es.est.quantitat+" en aquest moment disponibles");
+                break;
+            case 2: //Forns
+                System.out.println("Hi ha "+es.frn.quantitat+" en aquest moment disponibles");
+                break;
+            case 3: //Llavadores
+                System.out.println("Hi ha "+es.ll.quantitat+" en aquest moment disponibles");
+                break;
+            case 4: // Microones
+                System.out.println("Hi ha "+es.mcr.quantitat+" en aquest moment disponibles");
+                break;
+            case 5: //Neveres
+                System.out.println("Hi ha "+es.nv.quantitat+" en aquest moment disponibles");
+                break;
+            case 6: //Televisors
+                System.out.println("Hi ha "+es.tv.quantitat+" en aquest moment disponibles");
+                break;
+            default:
+                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 6 : ");
+                sc.next();;
+                break;
         }
     }
+
 
     private void triaOpcioAgenda() {
             switch (numBusquedaSecundari){
                 case 1:
                     System.out.println("Mostrar Clients");
+                    System.out.println("Nom ██ Cognoms ████████ NIF\n");
+                    //t.mostrarClients();
                     break;
                 case 2:
                     System.out.println("Editar Clients");
@@ -178,15 +120,44 @@ public class Tenda {
                     System.out.println("Donar de Baixa un Client");
                     break;
                 case 4:
-                    System.out.println("Donar de alta un Client");
+                    System.out.println("Donar de Alta un Client");
+                    a.altaClient(cl);
                     break;
                 default:
+                    System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 4 : ");
+                    sc.next();
                     break;
             }
     }
 
+    private void triaOpcioEstoc() {
+        Tenda t=new Tenda();
+        Estoc es= new Estoc();
+        Electrodomestic elec= new Electrodomestic();
+        switch (numBusquedaSecundari){
+            case 1:
+                System.out.println("Mostrar Estoc");
+                //t.mostrarEstocMenu();
+                break;
+            case 2:
+                System.out.println("Editar Electrodomestic");
+                break;
+            case 3:
+                System.out.println("Esborrar Electrodomestic");
+                break;
+            case 4:
+                System.out.println("Donar de Alta un Electrodomestic");
+                es.donarAlta(elec);
+                break;
+            default:
+                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 4 : ");
+                sc.next();
+                break;
+        }
+    }
+
     private void mostrarMenuEstoc() {
-            menuAgenda();
+            cargarMenus();
         for (int i = 0; i < menuEstoc.length; i++) {
 
 
@@ -196,8 +167,19 @@ public class Tenda {
         }
     }
 
+    private void mostraMenuCompres() {
+            cargarMenus();
+        for (int i = 0; i < menuCompres.length; i++) {
+
+
+            System.out.println(" [  "  + (i+1) + " ] " + menuCompres[i]);
+
+            System.out.println("___________________________________/");
+        }
+    }
+
     private void mostrarMenuAgenda() {
-            menuAgenda();
+            cargarMenus();
         for (int i = 0; i < menuAgenda.length; i++) {
 
 
@@ -213,36 +195,45 @@ public class Tenda {
             return numBusquedaPrincipal;
     }
 
-    public void menu() {
+    public void cargarMenus() {
+
         menuP =new String[4];
+        menuAgenda=new String[4];
+        menuEstoc=new String[4];
+        mEstoc=new String[6];
+        menuCompres=new String[2];
+
+        //Menu Principal
         menuP[0]="Agenda";
         menuP[1]="Estoc";
         menuP[2]="Compres";
         menuP[3]="Eixir";
 
-    }
-    public void menuAgenda() {
-        menuAgenda=new String[4];
+        //Menu Agenda
         menuAgenda[0]="Mostrar Clients";
         menuAgenda[1]="Editar Clients";
         menuAgenda[2]="Esborrar Client";
         menuAgenda[3]="Alta Client";
-    }
-    public void menuEstoc() {
-        menuEstoc=new String[4];
+
+        //Menu Estoc
         menuEstoc[0]="Mostrar Estoc";
         menuEstoc[1]="Editar Electrodomestics";
         menuEstoc[2]="Esborrar Electrodomestics";
         menuEstoc[3]="Alta Electrodomestics";
-    }
 
-    public void menuCompres() {
-        menuCompres=new String[2];
+        //Sub-Menu mostrar Estoc
+        mEstoc[0]="[ 1 ]: Estufes";
+        mEstoc[1]="[ 2 ]: Forns";
+        mEstoc[2]="[ 3 ]: Llavadores";
+        mEstoc[3]="[ 4 ]: Microones";
+        mEstoc[4]="[ 5 ]: Neveres";
+        mEstoc[5]="[ 6 ]: Televisors";
+
+        //Menu Compres
         menuCompres[0]="Mostrar Compres";
         menuCompres[1]="Mostra Commpra";
+
     }
-
-
 
 
     public void mostrarMenuPrincipal() {
