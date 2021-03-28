@@ -12,61 +12,51 @@ import java.util.Scanner;
 public class Estufa extends Electrodomestic{
 
 
-
+  public String infoEst[];
   public String potencia;
-  public String infoEst[]=new String[7];
+
 
 
   Iterator<Estufa> iterEst;
+  Electrodomestic elec=new Electrodomestic();
 
   public Estufa() {
 
 
   }
 
-
-
-
-
   public Estufa ( String str) {
+    String infoEst[]=str.split(";");
+    /*this.elec.numRef=infoElectro[0];
+    this.elec.PVP=Double.parseDouble(infoElectro[1]);
+    this.elec.marca=infoElectro[2];
+    this.elec.model=infoElectro[3];
+    this.elec.model=infoElectro[3];
+    this.elec.EE=infoElectro[4];
+    this.elec.quantitat=Integer.parseInt(infoElectro[5]);*/
 
-    String infoEst[] =str.split(";");
-    this.potencia=infoEst[0];
-    this.numRef=infoEst[1];
-    this.PVP=Double.parseDouble(infoEst[2]);
-    this.marca=infoEst[3];
-    this.model=infoEst[4];
-    this.EE=infoEst[5];
-    this.quantitat=Integer.parseInt(infoEst[0]);
 
 
-    this.potencia=potencia;
-    this.numRef=numRef;
+
+   /* this.numRef=numRef;
     this.PVP=PVP;
     this.marca=marca;
     this.model=model;
     this.EE=EE;
     this.quantitat=quantitat;
+    this.potencia=potencia;*/
 
 
+  }
 
+  public String toStringEstufa(){
 
-
+    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat+" "+this.potencia;
   }
 
 
 
-  public void llistaEstufes() {
 
-    iterEst = iterEst.next().iterEst;
-    while (iterEst.hasNext()) {
-      System.out.println(iterEst.next() + " ");
-      System.out.println("_________________________________/");
-
-    }
-
-
-  }
 
   public void setPotencia (String newVar) {
     potencia = newVar;

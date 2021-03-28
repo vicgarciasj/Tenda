@@ -25,6 +25,7 @@ public class Agenda {
     }
 
     public Client carregaClients() {
+
         try {
 
             File fc= new File("clients.txt");
@@ -35,36 +36,34 @@ public class Agenda {
                 Client c= new Client(strLine);
                 llistaCli.add(c);
             }
-            sc.close();
+        sc.close();
         }catch (FileNotFoundException e){
             System.out.println("Error  al carregar clients");
         }
         return null;
+
     }
 
 
-    public void altaClient(Client c) {
-
+    public void altaClient(Client cli) {
         Scanner sc= new Scanner(System.in);
-        c =new Client();
+        Tenda t=new Tenda();
+        cli =new Client();
         System.out.print("Introdueix nom: ");
-        c.nom=sc.nextLine();
+        cli.nom=sc.nextLine();
         System.out.print("Introdueix el primer cognom: ");
-        c.cognom1=sc.nextLine();
+        cli.cognom1=sc.nextLine();
         System.out.print("Introdueix el segon cognom  del Client: ");
-        c.cognom2=sc.nextLine();
+        cli.cognom2=sc.nextLine();
         System.out.print("Introdueix el NIF: ");
-        c.DNI=sc.nextLine();
+        cli.DNI=sc.nextLine();
         System.out.println("██████████████████████████████████████████████");
-        System.out.println("Nou Client: "+c.nom+" "+c.cognom1+" "+c.cognom2+" amb DNI:"+c.DNI);
+        System.out.println("Nou Client: "+cli.nom+" "+cli.cognom1+" "+cli.cognom2+" amb DNI:"+cli.DNI);
         System.out.println("██████████████████████████████████████████████");
-
-        llistaCli.add(c);
-        getLlistaClients();
-
-
+        t.altCli(cli);
 
     }
+
 
 
 

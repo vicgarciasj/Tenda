@@ -20,20 +20,40 @@ public class Nevera extends Electrodomestic {
   // Constructors
   //
   public Nevera () { };
-  
-  //
-  // Methods
-  //
 
 
-  //
-  // Accessor methods
-  //
 
-  /**
-   * Set the value of alsada
-   * @param newVar the new value of alsada
-   */
+
+  public Nevera(String str) {
+
+    String infoNevera[]=str.split(";");
+    this.numRef=infoNevera[0];
+    //this.PVP=Integer.parseInt(infoNevera[1]);
+    this.marca=infoNevera[2];
+    this.model=infoNevera[3];
+    this.EE=infoNevera[4];
+    this.quantitat=Integer.parseInt(infoNevera[5]);
+    this.alsada=Integer.parseInt(infoNevera[6]);
+    this.amplaria=Integer.parseInt(infoNevera[7]);
+    this.congelador=Boolean.getBoolean(infoNevera[8]);
+
+
+    this.numRef=numRef;
+    this.PVP=PVP;
+    this.marca=marca;
+    this.model=model;
+    this.EE=EE;
+    this.quantitat=quantitat;
+    this.alsada=alsada;
+    this.amplaria=amplaria;
+    this.congelador=congelador;
+
+  }
+
+  public String toStringNevera(){
+
+    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat+" "+this.alsada+" "+this.amplaria+" "+this.congelador;
+  }
   public void setAlsada (int newVar) {
     alsada = newVar;
   }

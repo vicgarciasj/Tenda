@@ -11,26 +11,31 @@ public class Microones extends Electrodomestic {
   public int potencia;
   public double volum;
 
+  public  Microones(){
 
+  }
+  public Microones(String str) {
 
-  //
-  // Constructors
-  //
+    String infoMicro[]=str.split(";");
+    this.numRef=infoMicro[0];
+    //this.PVP=Integer.parseInt(infoMicro[1]);
+    this.marca=infoMicro[2];
+    this.model=infoMicro[3];
+    this.EE=infoMicro[4];
+    this.quantitat=Integer.parseInt(infoMicro[5]);
+    this.potencia=Integer.parseInt(infoMicro[6]);
+    this.volum=Integer.parseInt(infoMicro[7]);
 
-  
-  //
-  // Methods
-  //
+    this.numRef=numRef;
+    this.PVP=PVP;
+    this.marca=marca;
+    this.model=model;
+    this.EE=EE;
+    this.quantitat=quantitat;
+    this.potencia=potencia;
+    this.volum=volum;
+  }
 
-
-  //
-  // Accessor methods
-  //
-
-  /**
-   * Set the value of potencia
-   * @param newVar the new value of potencia
-   */
   public void setPotencia (int newVar) {
     potencia = newVar;
   }

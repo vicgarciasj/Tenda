@@ -2,10 +2,7 @@
  * Class Electrodomestic
  */
 public class Electrodomestic {
-
-  //
-  // Fields
-  //
+  String infoElectro[];
 
   public String numRef;
   public double PVP;
@@ -14,8 +11,29 @@ public class Electrodomestic {
   public String EE;
   public int quantitat;
 
+  public Electrodomestic(){
+
+  }
 
 
+  public Electrodomestic(String str){
+
+      infoElectro=str.split(";");
+      numRef=infoElectro[0];
+      PVP=Double.parseDouble(infoElectro[1]);
+      marca=infoElectro[2];
+      model=infoElectro[3];
+      EE=infoElectro[4];
+      quantitat=Integer.parseInt(infoElectro[5]);
+
+    this.numRef=numRef;
+    this.PVP=PVP;
+    this.marca=marca;
+    this.model=model;
+    this.EE=EE;
+    this.quantitat=quantitat;
+
+  }
 
   public String toStringElect(){
 

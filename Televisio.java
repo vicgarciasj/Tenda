@@ -18,6 +18,10 @@ public class Televisio extends Electrodomestic {
   // Constructors
   //
   public Televisio () { };
+
+  public Televisio (String str) {
+
+  };
   
   //
   // Methods

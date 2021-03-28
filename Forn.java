@@ -10,16 +10,44 @@ public class Forn extends Electrodomestic {
 
 
   public String potencia;
-  public double volum;
+  public Double volum;
+
+  public  Forn(){
+
+  }
+    public Forn(String str) {
+
+     /* String infoForn[]=str.split(";");
+      this.numRef=infoForn[0];
+      this.PVP=Double.parseDouble(infoForn[1]);
+      this.marca=infoForn[2];
+      this.model=infoForn[3];
+      this.EE=infoForn[4];
+      this.quantitat=Integer.parseInt(infoForn[5]);
+      this.potencia=infoForn[6];
+      this.volum=Double.parseDouble(infoForn[7]);*/
+
+      this.numRef=numRef;
+      this.PVP=PVP;
+      this.marca=marca;
+      this.model=model;
+      this.EE=EE;
+      this.quantitat=quantitat;
+      this.potencia=potencia;
+      this.volum=volum;
+    }
+  public String toStringForn(){
+
+    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat+" "+this.potencia+" "+this.volum;
+  }
 
 
-
-
-  /**
+    /**
    * Set the value of potencia
    * @param newVar the new value of potencia
    */
   public void setPotencia (String newVar) {
+
     potencia = newVar;
   }
 
@@ -35,7 +63,7 @@ public class Forn extends Electrodomestic {
    * Set the value of volum
    * @param newVar the new value of volum
    */
-  public void setVolum (double newVar) {
+  public void setVolum (Double newVar) {
     volum = newVar;
   }
 
