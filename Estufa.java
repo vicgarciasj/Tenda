@@ -19,16 +19,16 @@ public class Estufa extends Electrodomestic{
   public Estufa() {
 
   }
-
   public Estufa ( String str) {
+
     String infoEst[]=str.split(";");
-    /*this.elec.numRef=infoElectro[0];
-    this.elec.PVP=Double.parseDouble(infoElectro[1]);
-    this.elec.marca=infoElectro[2];
-    this.elec.model=infoElectro[3];
-    this.elec.model=infoElectro[3];
-    this.elec.EE=infoElectro[4];
-    this.elec.quantitat=Integer.parseInt(infoElectro[5]);*/
+    numRef=infoEst[0];
+    PVP=Double.parseDouble(infoEst[1]);
+    marca=infoEst[2];
+    model=infoEst[3];
+    model=infoEst[3];
+    EE=infoEst[4];
+    quantitat=Integer.parseInt(infoEst[5]);
 
 
 
@@ -37,7 +37,7 @@ public class Estufa extends Electrodomestic{
     this.marca=marca;
     this.model=model;
     this.EE=EE;
-    this.quantitat=quantitat=4;
+    this.quantitat=quantitat;
     this.potencia=potencia;
 
 
@@ -50,10 +50,9 @@ public class Estufa extends Electrodomestic{
 
 
 
+  public void setPotencia (String potenciaEst) {
 
-
-  public void setPotencia (String newVar) {
-    potencia = newVar;
+    potencia = potenciaEst;
   }
 
 

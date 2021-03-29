@@ -3,7 +3,7 @@
 import java.util.*;
 
 public class Tenda {
-    public  int numBusquedaPrincipal,numBusquedaSecundari,numBusqueda;
+    public  int opcioBusquedaPrincipal,opcioBusquedaSecundari,opcioMenuEstoc, opcioSubMenuEstoc,opcioBusquedaCompres;
 
     public Scanner sc= new Scanner(System.in);
     public String[] menuP;
@@ -13,9 +13,6 @@ public class Tenda {
     public String[]menuCompres;
     private int quantitatProducte;
 
-    public Client cl = new Client();
-    public Agenda a=new Agenda();
-    public Estoc e=new Estoc();
 
 
     public static void main (String[]args) {
@@ -31,7 +28,7 @@ public class Tenda {
             t.triaOpcioPrincipal(opcio);
             t.tornarMenu();
 
-        } while (t.numBusquedaPrincipal != 4);{
+        } while (t.opcioBusquedaPrincipal != 4);{
             t.sc.close();
         }
 
@@ -39,60 +36,131 @@ public class Tenda {
 
 
 
-
-    public int triaOpcioPrincipal(int numBusquedaPrincipal){ //Ens permet escollir la opcio principal
-
+    public int triaOpcioPrincipal(int opcioBusquedaPrincipal){ //Ens permet escollir la opcio principal
 
 
-        switch (numBusquedaPrincipal){
+        switch (opcioBusquedaPrincipal){
                 case 1:
-                    System.out.println("Agenda\n");
+                    System.out.println("--------------------------------------------");
+                    System.out.println("                   Agenda                   ");
+                    System.out.println("--------------------------------------------");
+
                     mostrarMenuAgenda();
-                    triaOpcioAgenda();
+                    int opcioA=llegirOpcioSecundaria();
+                    triaOpcioAgenda(opcioA);
                     break;
                 case 2:
-                    System.out.println("Estoc\n");
+                    System.out.println("--------------------------------------------");
+                    System.out.println("                   Estoc                    ");
+                    System.out.println("--------------------------------------------");
+                    Estoc e=new Estoc();
                     e.carregaElectrodomestics();
                     mostrarMenuEstoc();
-                    triaOpcioEstoc();
+                    int opcioME=llegirOpcMenuEstoc();
+                    triaOpcioEstoc(opcioME);
 
                     break;
                 case 3:
-                    System.out.println("Compres\n");
+                    System.out.println("--------------------------------------------");
+                    System.out.println("                  Compres                   ");
+                    System.out.println("--------------------------------------------");
+
                     mostraMenuCompres();
-                    triaOpcioCompres();
+                    int opcioC=llegirOpcioCompres();
+                    triaOpcioCompres(opcioC);
 
                     break;
                 case 4:
-                    System.out.println("Eixir del programa");
-                    System.out.println("*********************");
-                    System.out.println("******* Fin de el programa **********");
-                    System.out.println("*********************");
-                    numBusquedaPrincipal=-2;
+                    System.out.println("Eixir del programa\n");
+                    System.out.println("--------------------------------------------");
+                    System.out.println("              Fi de el programa             ");
+                    System.out.println("--------------------------------------------");
+
                     break;
                 default:
-                    System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 6 : ");
+                    System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 6 : ");
                     sc.next();
                     break;
         }
-        return numBusquedaPrincipal;
+        return opcioBusquedaPrincipal;
 
     }
 
 
-    private void triaSubMEstoc() {
-            Estoc es=new Estoc();
-        System.out.println("Tria un numero entre el 1-6");
-        opcioBusqueda();
 
-        while (!(numBusqueda >= 1 && numBusqueda <= 6)) {
+    private int triaOpcioAgenda(int opcioBusquedaSecundari) {      //Seleciona la opcio de la agenda que es vol utlitzar
 
-            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
 
-            opcioBusqueda();
+        switch (opcioBusquedaSecundari){
+            case 1:
+                System.out.println("Mostrar Clients\n");
+                System.out.println("Nom -- Cognoms -------- NIF\n");
+                mostrarClients();
+                break;
+            case 2:
+                System.out.println("Editar Clients\n");
+                break;
+            case 3:
+                System.out.println("Donar de Baixa un Client\n");
+                System.out.println("Intodueix el DNI de el client que vols donar de baixa:");
+                Client cl=new Client();
+                cl.DNI= cl.DNI;
+                cl.DNI=sc.nextLine();
+                Agenda a=new Agenda();
+                a.baixaClient(cl.DNI);
+                break;
+            case 4:
+                Agenda ag=new Agenda();
+                Client cli=new Client();
+                System.out.println("Donar de Alta un Client\n");
+                ag.altaClient(cli);
+
+
+                break;
+            default:
+                System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 4 : ");
+                sc.next();
+                break;
         }
+        return opcioBusquedaSecundari;
+    }
 
-        switch (numBusqueda) {
+    private int triaOpcioEstoc(int opcioBusquedaEstoc) {
+
+
+        switch (opcioBusquedaEstoc){
+            case 1:
+                System.out.println("Mostrar Estoc\n");
+                mostrarSubMenuEstoc();
+                int opcioE=llegirOpcSubMenuEstoc();
+                triaSubMEstoc(opcioE);
+                break;
+            case 2:
+                System.out.println("Editar Electrodomestic\n");
+                break;
+            case 3:
+                System.out.println("Esborrar Electrodomestic\n");
+                break;
+            case 4:
+                System.out.println("Donar de Alta un Electrodomestic\n");
+                Estoc es=new Estoc();
+                Electrodomestic elec=new Electrodomestic();
+                es.opcioTriaAlta(elec);
+                es.altaElect(elec);
+                //es.altaTipus(elec);
+                break;
+            default:
+                System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 4 : ");
+                sc.next();
+                break;
+        }
+        return opcioBusquedaEstoc;
+    }
+
+    private int triaSubMEstoc(int opcioSubMenuEstoc) {
+
+
+        switch (opcioSubMenuEstoc) {
             case 1: //Estufes
                 mostrarEstufes();
 
@@ -157,99 +225,14 @@ public class Tenda {
                 sc.next();
                 break;
         }
-
+        return opcioSubMenuEstoc;
     }
 
+    public int  triaOpcioCompres(int opcioBusquedaCompres){
 
-
-    private void triaOpcioAgenda() {      //Seleciona la opcio de la agenda que es vol utlitzar
-
-        llegirOpcioSecundaria();
-        while (!(numBusquedaSecundari >= 1 && numBusquedaSecundari <= 4)) {
-
-            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
-
-            llegirOpcioSecundaria();
-        }
-
-
-        switch (numBusquedaSecundari){
-            case 1:
-                System.out.println("Mostrar Clients\n");
-                System.out.println("Nom ██ Cognoms ████████ NIF\n");
-                mostrarClients();
-                break;
-            case 2:
-                System.out.println("Editar Clients\n");
-                break;
-            case 3:
-                System.out.println("Donar de Baixa un Client\n");
-                System.out.println("Intodueix el DNI de el client que vols donar de baixa:");
-                this.cl.DNI= cl.DNI;
-                cl.DNI=sc.nextLine();
-                a.baixaClient(cl.DNI);
-                break;
-            case 4:
-                System.out.println("Donar de Alta un Client\n");
-                a.altaClient(cl);
-
-
-                break;
-            default:
-                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 4 : ");
-                sc.next();
-                break;
-        }
-    }
-
-    private void triaOpcioEstoc() {
-
-        llegirOpcioSecundaria();
-        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
-
-            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
-
-
-            llegirOpcioSecundaria();
-        }
-
-        switch (numBusquedaSecundari){
-            case 1:
-                System.out.println("Mostrar Estoc\n");
-                mostrarSubMenuEstoc();
-                triaSubMEstoc();
-                break;
-            case 2:
-                System.out.println("Editar Electrodomestic\n");
-                break;
-            case 3:
-                System.out.println("Esborrar Electrodomestic\n");
-                break;
-            case 4:
-                System.out.println("Donar de Alta un Electrodomestic\n");
-                Estoc es=new Estoc();
-                Electrodomestic elec=new Electrodomestic();
-                es.opcioTriaAlta(elec);
-                es.altaElect(elec);
-                //es.altaTipus(elec);
-                break;
-            default:
-                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 4 : ");
-                sc.next();
-                break;
-        }
-    }
-
-    public void  triaOpcioCompres(){
         System.out.print("Introdueix un nou nombre 1 o 2: ");
-        opcioBusqueda();
-        while (!(numBusquedaPrincipal == 1 || numBusquedaPrincipal == 2)) {
 
-            System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre 1 o 2: ");
-
-            opcioBusqueda();
-        }
-        switch (numBusquedaSecundari) {
+        switch (opcioBusquedaCompres) {
             case 1:
                 System.out.println("Mostrar Compres\n");
 
@@ -262,7 +245,9 @@ public class Tenda {
                 sc.next();
                 break;
 
-        }    }
+        }
+        return opcioBusquedaCompres;
+    }
 
 
 
@@ -361,19 +346,9 @@ public class Tenda {
 
     public void mostrarMenuPrincipal() {
         System.out.println();
-        System.out.println("█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗\n" +
-                "╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
-        System.out.println("""
-                ███╗   ███╗███████╗███╗   ██╗██╗   ██╗    \s
-                ████╗ ████║██╔════╝████╗  ██║██║   ██║    \s
-                ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║    \s
-                ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║    \s
-                ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝    \s
-                ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝     \s
-                """);
-
-        System.out.println("█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗\n" +
-                "╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
+        System.out.println("--------------------------------------------");
+        System.out.println("                   MENU                     ");
+        System.out.println("--------------------------------------------");
         System.out.println();
         for (int i = 0; i < menuP.length; i++) {
 
@@ -384,67 +359,88 @@ public class Tenda {
                     "                                                                                                       ");
         }
         System.out.println();
-        System.out.println("█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗█████╗\n" +
-                "╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝╚════╝");
+        System.out.println("--------------------------------------------");
     }
 
 
     public void portada(){
-        System.out.println("""
-                                                            ████████╗███████╗███╗   ██╗██████╗  █████╗                                           \s
-                                                            ╚══██╔══╝██╔════╝████╗  ██║██╔══██╗██╔══██╗                                          \s
-                                                               ██║   █████╗  ██╔██╗ ██║██║  ██║███████║                                          \s
-                                                               ██║   ██╔══╝  ██║╚██╗██║██║  ██║██╔══██║                                          \s
-                                                               ██║   ███████╗██║ ╚████║██████╔╝██║  ██║                                          \s
-                                                               ╚═╝   ╚══════╝╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝                                          \s
-                                                                                                                                                 \s
-                ███████╗██╗     ███████╗ ██████╗████████╗██████╗  ██████╗ ██████╗  ██████╗ ███╗   ███╗███████╗███████╗████████╗██╗ ██████╗███████╗
-                ██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██╔══██╗██╔═══██╗██╔══██╗██╔═══██╗████╗ ████║██╔════╝██╔════╝╚══██╔══╝██║██╔════╝██╔════╝
-                █████╗  ██║     █████╗  ██║        ██║   ██████╔╝██║   ██║██║  ██║██║   ██║██╔████╔██║█████╗  ███████╗   ██║   ██║██║     ███████╗
-                ██╔══╝  ██║     ██╔══╝  ██║        ██║   ██╔══██╗██║   ██║██║  ██║██║   ██║██║╚██╔╝██║██╔══╝  ╚════██║   ██║   ██║██║     ╚════██║
-                ███████╗███████╗███████╗╚██████╗   ██║   ██║  ██║╚██████╔╝██████╔╝╚██████╔╝██║ ╚═╝ ██║███████╗███████║   ██║   ██║╚██████╗███████║
-                ╚══════╝╚══════╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚══════╝╚══════╝   ╚═╝   ╚═╝ ╚═════╝╚══════╝
-                                                                                                                                                 \s
-                """);
+        System.out.println("********************************* TENDA DE ELECTRODOMESTICS*********************************");
 
     }
 
-    private int llegirOpcioPrincipal(){
+    private int llegirOpcioPrincipal(){     //Scanner per a triar la opcio del menu Principal
         Scanner scp=new Scanner(System.in);
-        System.out.println("████████████████████████████████████████████");
-        System.out.print("███ Introdueix una Opcio entre el  1-4: ");
-        numBusquedaPrincipal=scp.nextInt();
-        System.out.println("████████████████████████████████████████████");
-        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
+        System.out.println("--------------------------------------------");
+        System.out.print("--- Introdueix una Opcio entre el  1-4: ");
+        opcioBusquedaPrincipal =scp.nextInt();
+        System.out.println("--------------------------------------------");
+        while (!(opcioBusquedaPrincipal >= 1 && opcioBusquedaPrincipal <= 4)) {
 
             System.out.println("Opcio incorecta. Introdueix un altre valor: ");
 
             llegirOpcioPrincipal();
         }
-        return numBusquedaPrincipal;
+        return opcioBusquedaPrincipal;
     }
 
-    private int llegirOpcioSecundaria(){
+    private int llegirOpcioSecundaria(){    //Scanner per a triar la opcio del menu Secundari
 
-
-        System.out.println("████████████████████████████████████████████");
-        System.out.print("███ Introdueix una Opcio entre el  1-4: ");
-        numBusquedaSecundari=sc.nextInt();
-        System.out.println("████████████████████████████████████████████");
-        while (!(numBusquedaSecundari >= 1 && numBusquedaSecundari <= 4)) {
+        System.out.println("--------------------------------------------");
+        System.out.print("--- Introdueix una Opcio entre el  1-4: ");
+        opcioBusquedaSecundari=sc.nextInt();
+        System.out.println("--------------------------------------------");
+        while (!(opcioBusquedaSecundari >= 1 && opcioBusquedaSecundari <= 4)) {
 
             System.out.println("Opcio incorecta. Introdueix un altre valor: ");
 
             llegirOpcioSecundaria();
         }
-        return numBusquedaSecundari;
+        return opcioBusquedaSecundari;
     }
 
-    public int opcioBusqueda(){
-        System.out.println("████████████████████████████████████████████");
-        numBusqueda=sc.nextInt();
-        System.out.println("████████████████████████████████████████████");
-        return numBusqueda;
+    public int llegirOpcMenuEstoc(){     //Scanner per a triar la opcio del menu per al sub Menu del Estoc
+
+
+        System.out.println("--------------------------------------------");
+        System.out.print("--- Introdueix una Opcio entre el  1-6: ");
+        opcioMenuEstoc =sc.nextInt();
+        System.out.println("--------------------------------------------");
+        while (!(opcioMenuEstoc >= 1 && opcioMenuEstoc <= 6)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcMenuEstoc();
+        }
+        return opcioMenuEstoc;
+    }
+
+    public int llegirOpcSubMenuEstoc(){     //Scanner per a triar la opcio del menu per al sub Menu del Estoc
+
+
+        System.out.println("--------------------------------------------");
+        System.out.print("--- Introdueix una Opcio entre el  1-6: ");
+        opcioSubMenuEstoc =sc.nextInt();
+        System.out.println("--------------------------------------------");
+        while (!(opcioSubMenuEstoc >= 1 && opcioSubMenuEstoc <= 6)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcSubMenuEstoc();
+        }
+        return opcioSubMenuEstoc;
+    }
+
+    public int llegirOpcioCompres(){     //Scanner per a triar la opcio del menu per al sub Menu del Estoc
+        System.out.println("--------------------------------------------");
+        opcioSubMenuEstoc =sc.nextInt();
+        System.out.println("--------------------------------------------");
+        while (!(opcioSubMenuEstoc == 1 || opcioSubMenuEstoc ==2)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcSubMenuEstoc();
+        }
+        return opcioSubMenuEstoc;
     }
 
 
@@ -465,10 +461,12 @@ public class Tenda {
     }
 
     public void altCli(Client cli){
-        this.a.llistaCli.add(cli);
+        Agenda a=new Agenda();
+        a.llistaCli.add(cli);
     }
 
     public void mostrarClients(){
+        Agenda a=new Agenda();
         ArrayList<Client> mostrarLlistaCli = a.getLlistaClients();
 
         Iterator<Client>iterCli=mostrarLlistaCli.iterator();
@@ -483,12 +481,14 @@ public class Tenda {
     public void mostrarEstufes() {
         quantitatProducte =-1;
         System.out.println("Estufes Disponibles:\n");
-        ArrayList<Estufa> mostrarLlistaEstufes = e.getLlistaEstufes();
+        Estoc e=new Estoc();
+       ArrayList<Estufa> mostrarLlistaEstufes = e.getLlistaEstufes();
 
         Iterator<Estufa> iterEst = mostrarLlistaEstufes.iterator();
 
         while (iterEst.hasNext()) {
-            System.out.println(iterEst.next() + " ");
+            //System.out.println(iterEst.next() + " ");
+            System.out.println(e.llistaEstufes.toString() + " ");
             System.out.println("_________________________________/");
             quantitatProducte++;
         }
@@ -497,6 +497,7 @@ public class Tenda {
     public void mostrarForns() {
         System.out.println("Forns Disponibles:\n");
         quantitatProducte =-1;
+        Estoc e=new Estoc();
         ArrayList<Forn> mostrarLlistaForns = e.getLlistaForn();
 
         Iterator<Forn> iterFrn = mostrarLlistaForns.iterator();
@@ -512,6 +513,7 @@ public class Tenda {
     public void mostrarLlavadores() {
         System.out.println("Llavadores Disponibles:\n");
         quantitatProducte =-1;
+        Estoc e=new Estoc();
         ArrayList<Llavadora> mostrarLlistaLlavadores = e.getLlistaLlavadores();
 
         Iterator<Llavadora> iterll = mostrarLlistaLlavadores.iterator();
@@ -527,6 +529,7 @@ public class Tenda {
     public void mostrarMicroones() {
         System.out.println("Microones Disponibles:\n");
         quantitatProducte =-1;
+        Estoc e=new Estoc();
         ArrayList<Microones> mostrarLlistaMicroones = e.getLlistaMicroones();
 
         Iterator<Microones> itermcr = mostrarLlistaMicroones.iterator();
@@ -542,12 +545,29 @@ public class Tenda {
     public void mostrarNeveres() {
         System.out.println("Neveres Disponibles:\n");
         quantitatProducte =-1;
+        Estoc e=new Estoc();
         ArrayList<Nevera> mostrarLlistaNeveres = e.getLlistaNeveres();
 
         Iterator<Nevera> iternv = mostrarLlistaNeveres.iterator();
 
         while (iternv.hasNext()) {
             System.out.println(iternv.next() + " ");
+            System.out.println("_________________________________/");
+            quantitatProducte++;
+
+        }
+    }
+
+    public void mostrarTelevisors() {
+        System.out.println("Televisors Disponibles:\n");
+        quantitatProducte =-1;
+        Estoc e=new Estoc();
+        ArrayList<Televisio> mostrarLlistaTelevisors = e.getLlistaTelevisors();
+
+        Iterator<Televisio> itertv = mostrarLlistaTelevisors.iterator();
+
+        while (itertv.hasNext()) {
+            System.out.println(itertv.next() + " ");
             System.out.println("_________________________________/");
             quantitatProducte++;
 
