@@ -12,6 +12,7 @@ public class Electrodomestic {
   public int quantitat;
 
   public Electrodomestic(){
+    toStringElect();
 
   }
 
@@ -25,6 +26,8 @@ public class Electrodomestic {
       model=infoElectro[3];
       EE=infoElectro[4];
       quantitat=Integer.parseInt(infoElectro[5]);
+
+
 
     this.numRef=numRef;
     this.PVP=PVP;

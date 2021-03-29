@@ -14,7 +14,7 @@ import java.util.Scanner;
  */
 public class Agenda {
 
-    ArrayList<Client>llistaCli = new ArrayList<Client>();
+    public ArrayList<Client>llistaCli = new ArrayList<Client>();
 
 
 

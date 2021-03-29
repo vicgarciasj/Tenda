@@ -16,12 +16,7 @@ public class Estufa extends Electrodomestic{
   public String potencia;
 
 
-
-  Iterator<Estufa> iterEst;
-  Electrodomestic elec=new Electrodomestic();
-
   public Estufa() {
-
 
   }
 
@@ -37,14 +32,13 @@ public class Estufa extends Electrodomestic{
 
 
 
-
-   /* this.numRef=numRef;
+    this.numRef=numRef;
     this.PVP=PVP;
     this.marca=marca;
     this.model=model;
     this.EE=EE;
-    this.quantitat=quantitat;
-    this.potencia=potencia;*/
+    this.quantitat=quantitat=4;
+    this.potencia=potencia;
 
 
   }
@@ -65,6 +59,10 @@ public class Estufa extends Electrodomestic{
 
   public String getPotencia () {
     return potencia;
+  }
+
+  public int getQuantitatEstufes(){
+    return this.quantitat;
   }
 
 

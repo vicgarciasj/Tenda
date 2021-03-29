@@ -11,6 +11,7 @@ public class Tenda {
     public String[]menuAgenda;
     public String[]menuEstoc;
     public String[]menuCompres;
+    private int quantitatProducte;
 
     public Client cl = new Client();
     public Agenda a=new Agenda();
@@ -25,46 +26,41 @@ public class Tenda {
         t.portada();
         do {
             t.carregaMPricipal();
-            e.carregaElectrodomestics();
             t.mostrarMenuPrincipal();
-            t.triaOpcioPrincipal();
+            int opcio = t.llegirOpcioPrincipal();
+            t.triaOpcioPrincipal(opcio);
             t.tornarMenu();
-        } while (t.numBusquedaPrincipal != 0);{
+
+        } while (t.numBusquedaPrincipal != 4);{
             t.sc.close();
-         }
+        }
 
     }
 
 
 
 
-    public void triaOpcioPrincipal(){ //Ens permet escollir la opcio principal
-        Tenda t=new Tenda();
-        Estoc es= new Estoc();
-        busquedaPri();
-        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
+    public int triaOpcioPrincipal(int numBusquedaPrincipal){ //Ens permet escollir la opcio principal
 
-            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
 
-            numBusquedaPrincipal= sc.nextInt();
-        }
+
         switch (numBusquedaPrincipal){
                 case 1:
                     System.out.println("Agenda\n");
-                    t.mostrarMenuAgenda();
-                    t.triaOpcioAgenda();
+                    mostrarMenuAgenda();
+                    triaOpcioAgenda();
                     break;
                 case 2:
                     System.out.println("Estoc\n");
-                    es.carregaElectrodomestics();
-                    t.mostrarMenuEstoc();
-                    t.triaOpcioEstoc();
+                    e.carregaElectrodomestics();
+                    mostrarMenuEstoc();
+                    triaOpcioEstoc();
 
                     break;
                 case 3:
                     System.out.println("Compres\n");
-                    t.mostraMenuCompres();
-                    t.triaOpcioCompres();
+                    mostraMenuCompres();
+                    triaOpcioCompres();
 
                     break;
                 case 4:
@@ -72,63 +68,87 @@ public class Tenda {
                     System.out.println("*********************");
                     System.out.println("******* Fin de el programa **********");
                     System.out.println("*********************");
-                    sc.close();
+                    numBusquedaPrincipal=-2;
                     break;
                 default:
                     System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 6 : ");
                     sc.next();
                     break;
         }
+        return numBusquedaPrincipal;
+
     }
 
-    private void mostrarEstoc() {
+
+    private void triaSubMEstoc() {
             Estoc es=new Estoc();
-        busqueda();
-        switch (numBusqueda){
+        System.out.println("Tria un numero entre el 1-6");
+        opcioBusqueda();
+
+        while (!(numBusqueda >= 1 && numBusqueda <= 6)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            opcioBusqueda();
+        }
+
+        switch (numBusqueda) {
             case 1: //Estufes
                 mostrarEstufes();
 
-           /*     if (es.est.quantitat==1) {
-                    System.out.println("Hi ha " + es.est.getQuantitat() + " Estufa en aquest moment disponibles.");
-                }else {
-                    System.out.println("Hi ha "+es.est.getQuantitat()+" Estufes en aquest moment disponibles.");
-                }*/
+                if (quantitatProducte == 1) {
+                    System.out.println("Hi ha " + quantitatProducte + " Estufa en aquest moment disponibles.");
+                } else {
+                    System.out.println("Hi ha " + quantitatProducte + " Estufes en aquest moment disponibles.");
+                }
 
                 break;
 
             case 2: //Forns
-                if (es.frn.quantitat==1){
-                System.out.println("Hi ha "+es.frn.quantitat+" Forn en aquest moment disponibles.");
-                }else {
-                    System.out.println("Hi ha "+es.est.quantitat+" Forns en aquest moment disponibles.");
+
+                mostrarForns();
+
+                if (quantitatProducte == 1) {
+                    System.out.println("Hi ha " + quantitatProducte + " Forn en aquest moment disponibles.");
+                } else {
+                    System.out.println("Hi ha " + quantitatProducte + " Forns en aquest moment disponibles.");
                 }
                 break;
 
             case 3: //Llavadores
-                if (es.ll.quantitat==1){
-                System.out.println("Hi ha "+es.ll.quantitat+" Llavadora en aquest moment disponibles.");
-                }else {
-                    System.out.println("Hi ha "+es.ll.quantitat+" Llavadores en aquest moment disponibles.");
+
+                mostrarLlavadores();
+
+                if (quantitatProducte == 1) {
+                    System.out.println("Hi ha " + quantitatProducte + " Llavadora en aquest moment disponibles.");
+                } else {
+                    System.out.println("Hi ha " + quantitatProducte + " Llavadores en aquest moment disponibles.");
                 }
                 break;
 
             case 4: // Microones
-                System.out.println("Hi ha "+es.mcr.quantitat+" Microones en aquest moment disponibles.");
+
+                mostrarMicroones();
+
+                System.out.println("Hi ha " + quantitatProducte + " Microones en aquest moment disponibles.");
                 break;
 
             case 5: //Neveres
-                if (es.nv.quantitat==1){
-                System.out.println("Hi ha "+es.nv.quantitat+" Nevera en aquest moment disponibles.");
-                }else {
-                System.out.println("Hi ha "+es.nv.quantitat+" Neveres en aquest moment disponibles.");
+
+                mostrarNeveres();
+
+                if (quantitatProducte == 1) {
+                    System.out.println("Hi ha " + quantitatProducte + " Nevera en aquest moment disponibles.");
+                } else {
+                    System.out.println("Hi ha " + quantitatProducte + " Neveres en aquest moment disponibles.");
                 }
                 break;
 
             case 6: //Televisors
-                if (es.tv.quantitat==1){
-                System.out.println("Hi ha "+es.tv.quantitat+" Televisor en aquest moment disponibles.");
-                }else {
-                    System.out.println("Hi ha "+es.tv.quantitat+" Televisors en aquest moment disponibles.");
+                if (quantitatProducte == 1) {
+                    System.out.println("Hi ha " + quantitatProducte + " Televisor en aquest moment disponibles.");
+                } else {
+                    System.out.println("Hi ha " + quantitatProducte + " Televisors en aquest moment disponibles.");
                 }
                 break;
 
@@ -137,19 +157,27 @@ public class Tenda {
                 sc.next();
                 break;
         }
+
     }
 
 
 
     private void triaOpcioAgenda() {      //Seleciona la opcio de la agenda que es vol utlitzar
 
-         Tenda t=new Tenda();
-        busquedaSec();
+        llegirOpcioSecundaria();
+        while (!(numBusquedaSecundari >= 1 && numBusquedaSecundari <= 4)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcioSecundaria();
+        }
+
+
         switch (numBusquedaSecundari){
             case 1:
                 System.out.println("Mostrar Clients\n");
                 System.out.println("Nom ██ Cognoms ████████ NIF\n");
-                t.mostrarClients();
+                mostrarClients();
                 break;
             case 2:
                 System.out.println("Editar Clients\n");
@@ -175,15 +203,21 @@ public class Tenda {
     }
 
     private void triaOpcioEstoc() {
-        Tenda t=new Tenda();
-        Estoc es= new Estoc();
-        Electrodomestic elec= new Electrodomestic();
-        busquedaSec();
+
+        llegirOpcioSecundaria();
+        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+
+            llegirOpcioSecundaria();
+        }
+
         switch (numBusquedaSecundari){
             case 1:
                 System.out.println("Mostrar Estoc\n");
-                t.mostrarSubMenuEstoc();
-                t.mostrarEstoc();
+                mostrarSubMenuEstoc();
+                triaSubMEstoc();
                 break;
             case 2:
                 System.out.println("Editar Electrodomestic\n");
@@ -193,9 +227,11 @@ public class Tenda {
                 break;
             case 4:
                 System.out.println("Donar de Alta un Electrodomestic\n");
+                Estoc es=new Estoc();
+                Electrodomestic elec=new Electrodomestic();
                 es.opcioTriaAlta(elec);
                 es.altaElect(elec);
-                es.altaTipus(elec);
+                //es.altaTipus(elec);
                 break;
             default:
                 System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 4 : ");
@@ -205,6 +241,14 @@ public class Tenda {
     }
 
     public void  triaOpcioCompres(){
+        System.out.print("Introdueix un nou nombre 1 o 2: ");
+        opcioBusqueda();
+        while (!(numBusquedaPrincipal == 1 || numBusquedaPrincipal == 2)) {
+
+            System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre 1 o 2: ");
+
+            opcioBusqueda();
+        }
         switch (numBusquedaSecundari) {
             case 1:
                 System.out.println("Mostrar Compres\n");
@@ -214,15 +258,13 @@ public class Tenda {
                 System.out.println("Mostrar Compra\n");
                 break;
             default:
-                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre entre el 1 y el 2 : ");
+                System.out.print("█████ Valor Incorrecte █████\n███ Introdueix un nou nombre , 1 o 2 : ");
                 sc.next();
                 break;
 
         }    }
 
-    public void altCli(Client cli){
-        this.a.llistaCli.add(cli);
-    }
+
 
     private void mostrarSubMenuEstoc() {
         carregaMEstoc();
@@ -366,65 +408,150 @@ public class Tenda {
                 """);
 
     }
-    public void busquedaPri(){
+
+    private int llegirOpcioPrincipal(){
+        Scanner scp=new Scanner(System.in);
         System.out.println("████████████████████████████████████████████");
         System.out.print("███ Introdueix una Opcio entre el  1-4: ");
-        numBusquedaPrincipal=sc.nextInt();
+        numBusquedaPrincipal=scp.nextInt();
         System.out.println("████████████████████████████████████████████");
+        while (!(numBusquedaPrincipal >= 1 && numBusquedaPrincipal <= 4)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcioPrincipal();
+        }
+        return numBusquedaPrincipal;
     }
 
-    public void busquedaSec(){
+    private int llegirOpcioSecundaria(){
+
+
         System.out.println("████████████████████████████████████████████");
         System.out.print("███ Introdueix una Opcio entre el  1-4: ");
         numBusquedaSecundari=sc.nextInt();
         System.out.println("████████████████████████████████████████████");
+        while (!(numBusquedaSecundari >= 1 && numBusquedaSecundari <= 4)) {
+
+            System.out.println("Opcio incorecta. Introdueix un altre valor: ");
+
+            llegirOpcioSecundaria();
+        }
+        return numBusquedaSecundari;
     }
 
-    public void busqueda(){
+    public int opcioBusqueda(){
         System.out.println("████████████████████████████████████████████");
         numBusqueda=sc.nextInt();
         System.out.println("████████████████████████████████████████████");
+        return numBusqueda;
     }
 
-    void tornarMenu() {
+
+
+    public void tornarMenu() {
         Scanner e = new Scanner(System.in);
         String enter;
-        if ((numBusquedaPrincipal==4)){
 
         do {
+            System.out.println(" ");
             System.out.println("_________________________________");
             System.out.println(" 'Enter' per a tornar al menu ");
             System.out.println("_________________________________/");
             enter = e.nextLine();
 
         } while (!(enter.isEmpty()));
-        }else {
-            sc.close();
-        }
 
     }
 
-    public void mostrarClients(){
-        ArrayList<Client>llistaCli = a.getLlistaClients();
+    public void altCli(Client cli){
+        this.a.llistaCli.add(cli);
+    }
 
-        Iterator<Client>iterCli=llistaCli.iterator();
+    public void mostrarClients(){
+        ArrayList<Client> mostrarLlistaCli = a.getLlistaClients();
+
+        Iterator<Client>iterCli=mostrarLlistaCli.iterator();
+
         while (iterCli.hasNext()) {
-            Client c = new Client();
             System.out.println(iterCli.next() + " ");
             System.out.println("_________________________________/");
         }
     }
 
-    public void mostrarEstufes(){
-        ArrayList<Estufa>llistaEstufes = e.getLlistaEstufes();
 
-        Iterator<Estufa>iterEst=llistaEstufes.iterator();
+    public void mostrarEstufes() {
+        quantitatProducte =-1;
+        System.out.println("Estufes Disponibles:\n");
+        ArrayList<Estufa> mostrarLlistaEstufes = e.getLlistaEstufes();
+
+        Iterator<Estufa> iterEst = mostrarLlistaEstufes.iterator();
+
         while (iterEst.hasNext()) {
-            Estufa est = new Estufa();
-            System.out.println(iterEst.next().toStringEstufa() + " ");
+            System.out.println(iterEst.next() + " ");
             System.out.println("_________________________________/");
+            quantitatProducte++;
         }
+    }
 
+    public void mostrarForns() {
+        System.out.println("Forns Disponibles:\n");
+        quantitatProducte =-1;
+        ArrayList<Forn> mostrarLlistaForns = e.getLlistaForn();
+
+        Iterator<Forn> iterFrn = mostrarLlistaForns.iterator();
+
+        while (iterFrn.hasNext()) {
+            System.out.println(iterFrn.next() + " ");
+            System.out.println("_________________________________/");
+            quantitatProducte++;
+
+        }
+    }
+
+    public void mostrarLlavadores() {
+        System.out.println("Llavadores Disponibles:\n");
+        quantitatProducte =-1;
+        ArrayList<Llavadora> mostrarLlistaLlavadores = e.getLlistaLlavadores();
+
+        Iterator<Llavadora> iterll = mostrarLlistaLlavadores.iterator();
+
+        while (iterll.hasNext()) {
+            System.out.println(iterll.next() + " ");
+            System.out.println("_________________________________/");
+            quantitatProducte++;
+
+        }
+    }
+
+    public void mostrarMicroones() {
+        System.out.println("Microones Disponibles:\n");
+        quantitatProducte =-1;
+        ArrayList<Microones> mostrarLlistaMicroones = e.getLlistaMicroones();
+
+        Iterator<Microones> itermcr = mostrarLlistaMicroones.iterator();
+
+        while (itermcr.hasNext()) {
+            System.out.println(itermcr.next() + " ");
+            System.out.println("_________________________________/");
+            quantitatProducte++;
+
+        }
+    }
+
+    public void mostrarNeveres() {
+        System.out.println("Neveres Disponibles:\n");
+        quantitatProducte =-1;
+        ArrayList<Nevera> mostrarLlistaNeveres = e.getLlistaNeveres();
+
+        Iterator<Nevera> iternv = mostrarLlistaNeveres.iterator();
+
+        while (iternv.hasNext()) {
+            System.out.println(iternv.next() + " ");
+            System.out.println("_________________________________/");
+            quantitatProducte++;
+
+        }
     }
 
 
