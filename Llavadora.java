@@ -13,7 +13,7 @@ public class Llavadora extends Electrodomestic {
   public Llavadora() {
   }
 
-//
+
   public Llavadora(String str) {
 
     String info[]=str.split(";");

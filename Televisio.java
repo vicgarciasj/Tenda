@@ -8,7 +8,7 @@ import java.util.*;
 public class Televisio extends Electrodomestic {
 
   //
-  // Fields
+  // Flds
   //
 
   public String definicio;
