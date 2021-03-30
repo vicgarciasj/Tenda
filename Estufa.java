@@ -43,10 +43,7 @@ public class Estufa extends Electrodomestic{
 
   }
 
-  public String toStringEstufa(){
 
-    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat+" "+this.potencia;
-  }
 
 
 

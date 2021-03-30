@@ -11,13 +11,17 @@ public class Tenda {
     public String[]menuAgenda;
     public String[]menuEstoc;
     public String[]menuCompres;
-    private int quantitatProducte;
+
+    Estoc e = new Estoc();
+    Agenda a=new Agenda();
+
 
 
 
     public static void main (String[]args) {
         Tenda t = new Tenda();
-        Estoc e = new Estoc();
+        //Estoc e = new Estoc();
+
 
 
         t.portada();
@@ -53,8 +57,8 @@ public class Tenda {
                     System.out.println("--------------------------------------------");
                     System.out.println("                   Estoc                    ");
                     System.out.println("--------------------------------------------");
-                    Estoc e=new Estoc();
-                    e.carregaElectrodomestics();
+                    //Estoc e=new Estoc();
+                    //e.carregaElectrodomestics();
                     mostrarMenuEstoc();
                     int opcioME=llegirOpcMenuEstoc();
                     triaOpcioEstoc(opcioME);
@@ -94,7 +98,7 @@ public class Tenda {
         switch (opcioBusquedaSecundari){
             case 1:
                 System.out.println("Mostrar Clients\n");
-                System.out.println("Nom -- Cognoms -------- NIF\n");
+
                 mostrarClients();
                 break;
             case 2:
@@ -145,9 +149,11 @@ public class Tenda {
                 System.out.println("Donar de Alta un Electrodomestic\n");
                 Estoc es=new Estoc();
                 Electrodomestic elec=new Electrodomestic();
-                es.opcioTriaAlta(elec);
+                mostrarSubMenuEstoc();
+                int opcioSE=llegirOpcSubMenuEstoc();
+                es.altaTipus(opcioSE);
                 es.altaElect(elec);
-                //es.altaTipus(elec);
+
                 break;
             default:
                 System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 4 : ");
@@ -164,60 +170,61 @@ public class Tenda {
             case 1: //Estufes
                 mostrarEstufes();
 
-                if (quantitatProducte == 1) {
-                    System.out.println("Hi ha " + quantitatProducte + " Estufa en aquest moment disponibles.");
+                Estufa est=new Estufa();
+                if (est.quantitat == 1) {
+                    System.out.println("Hi ha " + est.getQuantitatEstufes() + " Estufa en aquest moment disponibles.");
                 } else {
-                    System.out.println("Hi ha " + quantitatProducte + " Estufes en aquest moment disponibles.");
+                    System.out.println("Hi ha " + est.quantitat + " Estufes en aquest moment disponibles.");
                 }
 
                 break;
 
-            case 2: //Forns
+           case 2: //Forns
 
                 mostrarForns();
 
-                if (quantitatProducte == 1) {
+                /*if (quantitatProducte == 1) {
                     System.out.println("Hi ha " + quantitatProducte + " Forn en aquest moment disponibles.");
                 } else {
                     System.out.println("Hi ha " + quantitatProducte + " Forns en aquest moment disponibles.");
-                }
+                }*/
                 break;
 
             case 3: //Llavadores
 
                 mostrarLlavadores();
 
-                if (quantitatProducte == 1) {
+               /* if (quantitatProducte == 1) {
                     System.out.println("Hi ha " + quantitatProducte + " Llavadora en aquest moment disponibles.");
                 } else {
                     System.out.println("Hi ha " + quantitatProducte + " Llavadores en aquest moment disponibles.");
-                }
+                }*/
                 break;
 
             case 4: // Microones
 
                 mostrarMicroones();
 
-                System.out.println("Hi ha " + quantitatProducte + " Microones en aquest moment disponibles.");
+                //System.out.println("Hi ha " + quantitatProducte + " Microones en aquest moment disponibles.");
                 break;
 
             case 5: //Neveres
 
                 mostrarNeveres();
 
-                if (quantitatProducte == 1) {
+                /*if (quantitatProducte == 1) {
                     System.out.println("Hi ha " + quantitatProducte + " Nevera en aquest moment disponibles.");
                 } else {
                     System.out.println("Hi ha " + quantitatProducte + " Neveres en aquest moment disponibles.");
-                }
+                }*/
                 break;
 
             case 6: //Televisors
-                if (quantitatProducte == 1) {
+                /*if (quantitatProducte == 1) {
                     System.out.println("Hi ha " + quantitatProducte + " Televisor en aquest moment disponibles.");
                 } else {
                     System.out.println("Hi ha " + quantitatProducte + " Televisors en aquest moment disponibles.");
-                }
+                }*/
                 break;
 
             default:
@@ -461,12 +468,13 @@ public class Tenda {
     }
 
     public void altCli(Client cli){
-        Agenda a=new Agenda();
+
         a.llistaCli.add(cli);
     }
 
     public void mostrarClients(){
-        Agenda a=new Agenda();
+        System.out.println("Nom -- Cognoms -------- NIF\n");
+
         ArrayList<Client> mostrarLlistaCli = a.getLlistaClients();
 
         Iterator<Client>iterCli=mostrarLlistaCli.iterator();
@@ -479,97 +487,94 @@ public class Tenda {
 
 
     public void mostrarEstufes() {
-        quantitatProducte =-1;
-        System.out.println("Estufes Disponibles:\n");
-        Estoc e=new Estoc();
-       ArrayList<Estufa> mostrarLlistaEstufes = e.getLlistaEstufes();
 
-        Iterator<Estufa> iterEst = mostrarLlistaEstufes.iterator();
+        System.out.println("Estufes Disponibles:\n");
+        System.out.println("NªRef --- Marca --- Modelo -- EE ---- PVP --- Quantitat\n");
+
+        Iterator<Electrodomestic> iterEst = e.llistaEstufes.iterator();
 
         while (iterEst.hasNext()) {
-            //System.out.println(iterEst.next() + " ");
-            System.out.println(e.llistaEstufes.toString() + " ");
-            System.out.println("_________________________________/");
-            quantitatProducte++;
+            Electrodomestic elec=iterEst.next();
+            System.out.println(elec.toString(elec));
+            System.out.println("______________________________________________________/");
+
         }
     }
 
     public void mostrarForns() {
         System.out.println("Forns Disponibles:\n");
-        quantitatProducte =-1;
-        Estoc e=new Estoc();
-        ArrayList<Forn> mostrarLlistaForns = e.getLlistaForn();
 
-        Iterator<Forn> iterFrn = mostrarLlistaForns.iterator();
+        Iterator<Electrodomestic> iterFrn = e.llistaForns.iterator();
 
         while (iterFrn.hasNext()) {
-            System.out.println(iterFrn.next() + " ");
+            Electrodomestic elec=iterFrn.next();
+            System.out.println(elec.toString(elec));
             System.out.println("_________________________________/");
-            quantitatProducte++;
 
         }
     }
 
     public void mostrarLlavadores() {
         System.out.println("Llavadores Disponibles:\n");
-        quantitatProducte =-1;
         Estoc e=new Estoc();
-        ArrayList<Llavadora> mostrarLlistaLlavadores = e.getLlistaLlavadores();
+        ArrayList<Electrodomestic> mostrarLlistaLlavadores = e.getLlistaLlavadores();
 
-        Iterator<Llavadora> iterll = mostrarLlistaLlavadores.iterator();
+        Iterator<Electrodomestic> iterll = mostrarLlistaLlavadores.iterator();
 
         while (iterll.hasNext()) {
             System.out.println(iterll.next() + " ");
             System.out.println("_________________________________/");
-            quantitatProducte++;
+
 
         }
     }
 
     public void mostrarMicroones() {
         System.out.println("Microones Disponibles:\n");
-        quantitatProducte =-1;
-        Estoc e=new Estoc();
-        ArrayList<Microones> mostrarLlistaMicroones = e.getLlistaMicroones();
 
-        Iterator<Microones> itermcr = mostrarLlistaMicroones.iterator();
+        Estoc e=new Estoc();
+        ArrayList<Electrodomestic> mostrarLlistaMicroones = e.getLlistaMicroones();
+
+        Iterator<Electrodomestic> itermcr = mostrarLlistaMicroones.iterator();
 
         while (itermcr.hasNext()) {
             System.out.println(itermcr.next() + " ");
             System.out.println("_________________________________/");
-            quantitatProducte++;
+
 
         }
     }
 
+
+
     public void mostrarNeveres() {
         System.out.println("Neveres Disponibles:\n");
-        quantitatProducte =-1;
-        Estoc e=new Estoc();
-        ArrayList<Nevera> mostrarLlistaNeveres = e.getLlistaNeveres();
 
-        Iterator<Nevera> iternv = mostrarLlistaNeveres.iterator();
+        Estoc e=new Estoc();
+        ArrayList<Electrodomestic> mostrarLlistaNeveres = e.getLlistaNeveres();
+
+        Iterator<Electrodomestic> iternv = mostrarLlistaNeveres.iterator();
 
         while (iternv.hasNext()) {
             System.out.println(iternv.next() + " ");
             System.out.println("_________________________________/");
-            quantitatProducte++;
 
         }
+
     }
 
     public void mostrarTelevisors() {
         System.out.println("Televisors Disponibles:\n");
-        quantitatProducte =-1;
-        Estoc e=new Estoc();
-        ArrayList<Televisio> mostrarLlistaTelevisors = e.getLlistaTelevisors();
 
-        Iterator<Televisio> itertv = mostrarLlistaTelevisors.iterator();
+        Estoc e=new Estoc();
+        ArrayList<Electrodomestic> mostrarLlistaTelevisors = e.getLlistaTelevisors();
+
+        Iterator<Electrodomestic> itertv = mostrarLlistaTelevisors.iterator();
 
         while (itertv.hasNext()) {
-            System.out.println(itertv.next() + " ");
+            System.out.println(itertv.toString().lines() + " ");
             System.out.println("_________________________________/");
-            quantitatProducte++;
+
 
         }
     }

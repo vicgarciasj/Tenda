@@ -12,7 +12,8 @@ public class Electrodomestic {
   public int quantitat;
 
   public Electrodomestic(){
-    toStringElect();
+
+
 
   }
 
@@ -38,9 +39,9 @@ public class Electrodomestic {
 
   }
 
-  public String toStringElect(){
+  public String toString(Electrodomestic elec){
 
-    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat;
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.PVP+"€      "+this.quantitat;
   }
 
 
@@ -133,6 +134,9 @@ public class Electrodomestic {
   public int getQuantitat () {
     return quantitat;
   }
+
+
+
 
   //
   // Other methods

@@ -3,8 +3,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.Iterator;
-
 
 /**
  * Class Estoc
@@ -14,19 +12,31 @@ public class Estoc {
     private Scanner sc=new Scanner(System.in);
     private String tip;
 
-    public ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
+    /*public ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
     public ArrayList<Estufa> llistaEstufes= new ArrayList<Estufa>();
     public ArrayList<Forn> llistaForns = new ArrayList<Forn>();
     public ArrayList<Microones> llistaMicroones = new ArrayList<Microones>();
     public ArrayList<Llavadora> llistaLlavadores = new ArrayList<Llavadora>();
     public ArrayList<Televisio> llistaTelevisors = new ArrayList<Televisio>();
-    public ArrayList<Nevera> llistaNevera = new ArrayList<Nevera>();
+    public ArrayList<Nevera> llistaNevera = new ArrayList<Nevera>();*/
+
+
+
+
+    public ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaEstufes= new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaForns = new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaMicroones = new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaLlavadores = new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaNevera = new ArrayList<Electrodomestic>();
+    public ArrayList<Electrodomestic> llistaTelevisors = new ArrayList<Electrodomestic>();
+
 
     public Estoc () {
         carregaElectrodomestics();
 
   }
-  public void carregaElectrodomestics() {
+    public void carregaElectrodomestics() {
 
     carregaEstufes();
     carregaForns();
@@ -34,64 +44,10 @@ public class Estoc {
     carregaMicroones();
     carregaNeveres();
     carregaTelevisors();
-  }
-
-
-    public void opcioTriaAlta(Electrodomestic e) {
-
-      int num = -1;
-     /* System.out.println("Tipus de Electrodomestic:\n");
-      num= sc.nextInt();
-      switch (num) {
-          case 1: //Estufa
-              Estufa est = new Estufa();
-              System.out.println("Intodueix la Potencia:");
-              est.potencia = sc.nextLine();
-              tip = "Estufa";
-              tipus = est;
-              return tipus;
-          case 2: //Forn
-              Forn fr = new Forn();
-              System.out.println("Introdueix la Potencia: ");
-              fr.potencia = sc.nextLine();
-              System.out.println("Introdueix el Volum: ");
-              fr.volum = sc.nextDouble();
-              tip = "Forn";
-              tipus = fr;
-              return tipus;
-          case 3: //Llavadora
-              Llavadora ll = new Llavadora();
-              tip = "Llavadora";
-              tipus = ll;
-              return tipus;
-          case 4: //Microones
-              Microones mcr = new Microones();
-              System.out.println("Introdueix la Potencia: ");
-              mcr.potencia = sc.nextInt();
-              System.out.println("Introdueix el Volum: ");
-              mcr.volum = sc.nextInt();
-              tip = "Microones";
-              tipus = mcr;
-              return tipus;
-          case 5: //Nevera
-              Nevera nv = new Nevera();
-              nv.alsada = sc.nextInt();
-              nv.amplaria = sc.nextInt();
-              nv.fons = sc.nextInt();
-              nv.congelador = sc.hasNext();
-              tip = "Nevera";
-              tipus = nv;
-              return tipus;
-          case 6: //Televisor
-              Televisio tv = new Televisio();
-              tv.definicio = sc.nextLine();
-              tv.polzades = sc.nextInt();
-              tip = "Televisor";
-              tipus = tv;
-              return tipus;
-      }*/
-
     }
+
+
+
 
     public void altaElect( Electrodomestic tipus){
       System.out.println("Introdueix el Numero de Referencia: ");
@@ -113,27 +69,42 @@ public class Estoc {
 
   }
 
-  /*public void altaTipus(Electrodomestic tipus){
-        if (tipus==est){
-            this.llistaEstufes.add(est);
+  public int altaTipus(int opcio){
+        Electrodomestic tipus;
+        if (opcio==1){
+            tip = "Estufa";
+            Estufa est=new Estufa();
+            llistaEstufes.add(est);
+            tipus=est;
         }
-      if (tipus==frn){
-          this.llistaForns.add(frn);
-      }
-      if (tipus==ll){
-          this.llistaLlavadores.add(ll);
-      }
-      if (tipus==mcr){
-          this.llistaMicroones.add(mcr);
-      }
-      if (tipus==nv){
-          this.llistaNevera.add(nv);
-      }
-      if (tipus==tv){
-          this.llistaTelevisors.add(tv);
-      }
+      if (opcio==2){
+          tip = "Forn";
+          Forn frn=new Forn();
+          llistaForns.add(frn);
 
-  }*/
+      }
+      if (opcio==3){
+          tip = "Llavadora";
+          Llavadora ll=new Llavadora();
+          llistaLlavadores.add(ll);
+      }
+      if (opcio==4){
+          tip = "Microones";
+          Microones mcr = new Microones();
+          llistaMicroones.add(mcr);
+      }
+      if (opcio==5){
+          tip = "Nevera";
+          Nevera nv = new Nevera();
+          llistaNevera.add(nv);
+      }
+      if (opcio==6){
+          tip = "Televisor";
+          Televisio tv = new Televisio();
+          llistaTelevisors.add(tv);
+      }
+    return opcio;
+  }
 
 
 
@@ -177,13 +148,13 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Estufa> LlistaEst() {
+    private ArrayList<Electrodomestic> LlistaEst() {
 
         return this.llistaEstufes;
 
     }
 
-    public ArrayList<Estufa> getLlistaEstufes() {
+    public ArrayList<Electrodomestic> getLlistaEstufes() {
 
         return llistaEstufes;
     }
@@ -212,13 +183,13 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Forn> LlistaForn() {
+    private ArrayList<Electrodomestic> LlistaForn() {
 
         return this.llistaForns;
 
     }
 
-    public ArrayList<Forn> getLlistaForn() {
+    public ArrayList<Electrodomestic> getLlistaForn() {
         return llistaForns;
     }
 
@@ -247,13 +218,13 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Llavadora> LlistaLlavadores() {
+    private ArrayList<Electrodomestic> LlistaLlavadores() {
 
         return this.llistaLlavadores;
 
     }
 
-    public ArrayList<Llavadora> getLlistaLlavadores() {
+    public ArrayList<Electrodomestic> getLlistaLlavadores() {
         return llistaLlavadores;
     }
 
@@ -280,13 +251,13 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Microones> LlistaMicroones() {
+    private ArrayList<Electrodomestic> LlistaMicroones() {
 
         return this.llistaMicroones;
 
     }
 
-    public ArrayList<Microones> getLlistaMicroones() {
+    public ArrayList<Electrodomestic> getLlistaMicroones() {
         return llistaMicroones;
     }
 
@@ -313,13 +284,15 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Nevera> LlistaNeveres() {
+
+
+    private ArrayList<Electrodomestic> LlistaNeveres() {
 
         return this.llistaNevera;
 
     }
 
-    public ArrayList<Nevera> getLlistaNeveres() {
+    public ArrayList<Electrodomestic> getLlistaNeveres() {
         return llistaNevera;
     }
 
@@ -346,15 +319,17 @@ public class Estoc {
         return null;
     }
 
-    private ArrayList<Televisio> LlistaTelevisors() {
+    private ArrayList<Electrodomestic> LlistaTelevisors() {
 
         return this.llistaTelevisors;
 
     }
 
-    public ArrayList<Televisio> getLlistaTelevisors() {
+    public ArrayList<Electrodomestic> getLlistaTelevisors() {
         return llistaTelevisors;
     }
+
+
 }
 
 
