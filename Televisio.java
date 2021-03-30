@@ -14,7 +14,7 @@ public class Televisio extends Electrodomestic {
   public String definicio;
   public int polzades;
   
-  //
+
   // Constructors
   //
   public Televisio () { };

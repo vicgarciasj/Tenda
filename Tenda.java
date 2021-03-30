@@ -114,7 +114,7 @@ public class Tenda {
                 Agenda ag=new Agenda();
                 System.out.println("Donar de Alta un Client\n");
                 ag.altaClient();
-
+//
                 break;
             default:
                 System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 4 : ");

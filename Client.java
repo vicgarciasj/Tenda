@@ -18,6 +18,7 @@ public class Client {
 
   }
 
+  //
   public Client (String str) {
 
       String info[] =str.split(";");

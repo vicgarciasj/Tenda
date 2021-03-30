@@ -6,7 +6,7 @@ import java.util.*;
  * Class Microones
  */
 public class Microones extends Electrodomestic {
-
+//
 
   public int potencia;
   public int volum;

@@ -21,7 +21,7 @@ public class Nevera extends Electrodomestic {
   //
   public Nevera () { };
 
-
+//
 
 
   public Nevera(String str) {

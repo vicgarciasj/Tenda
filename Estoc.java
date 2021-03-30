@@ -110,7 +110,7 @@ public class Estoc {
   }
 
 
-
+//
 /*  public Boolean donarBaixa(int ref) {
 
         ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
