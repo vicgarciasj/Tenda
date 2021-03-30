@@ -17,28 +17,21 @@ public class Microones extends Electrodomestic {
   public Microones(String str) {
 
     String info[]=str.split(";");
-    this.numRef=info[0];
-    this.PVP=Double.parseDouble(info[1]);
-    this.marca=info[2];
-    this.model=info[3];
-    this.EE=info[4];
-    this.quantitat=Integer.parseInt(info[5]);
-    this.potencia=Integer.parseInt(info[6]);
-    this.volum=Integer.parseInt(info[7]);
+    numRef=Integer.parseInt(info[0]);
+    PVP=Double.parseDouble(info[1]);
+    marca=info[2];
+    model=info[3];
+    EE=info[4];
+    quantitat=Integer.parseInt(info[5]);
+    potencia=Integer.parseInt(info[6]);
+    volum=Integer.parseInt(info[7]);
 
-    this.numRef=numRef;
-    this.PVP=PVP;
-    this.marca=marca;
-    this.model=model;
-    this.EE=EE;
-    this.quantitat=quantitat;
-    this.potencia=potencia;
-    this.volum=volum;
+
   }
 
   public String toString(Electrodomestic elec){
 
-    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"W     "+this.PVP+"€     "+this.volum+"L      "+this.quantitat;
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"W      "+this.volum+"L      "+this.PVP+"€      "+this.quantitat;
   }
 
   public void setPotencia (int newVar) {

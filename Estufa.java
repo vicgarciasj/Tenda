@@ -14,7 +14,7 @@ public class Estufa extends Electrodomestic{
   public Estufa ( String str) {
 
     String info[]=str.split(";");
-    numRef=info[0];
+    numRef=Integer.parseInt(info[0]);
     PVP=Double.parseDouble(info[1]);
     marca=info[2];
     model=info[3];
@@ -38,7 +38,7 @@ public class Estufa extends Electrodomestic{
 
   public String toString(Electrodomestic elec){
 
-    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"       "+this.PVP+"€      "+this.quantitat;
+    return this.numRef+"    "+this.marca+"     "+this.model+"     "+this.EE+"      "+this.potencia+"W      "+this.PVP+"€      "+this.quantitat;
   }
 
 

@@ -21,7 +21,7 @@ public class Televisio extends Electrodomestic {
 
   public Televisio (String str) {
     String info[]=str.split(";");
-    numRef=info[0];
+    numRef=Integer.parseInt(info[0]);
     PVP=Double.parseDouble(info[1]);
     marca=info[2];
     model=info[3];
@@ -31,55 +31,15 @@ public class Televisio extends Electrodomestic {
     polzades=Integer.parseInt(info[7]);
 
 
-
-    this.numRef=numRef;
-    this.PVP=PVP;
-    this.marca=marca;
-    this.model=model;
-    this.EE=EE;
-    this.quantitat=quantitat;
-    this.definicio=definicio;
-    this.polzades=polzades;
-
   }
 
 
   public String toString(Electrodomestic elect){
 
-    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.definicio+"L      "+this.PVP+"€      "+this.quantitat;
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.definicio+"       "+this.polzades+"''       "+this.PVP+"€      "+this.quantitat;
   }
   
 
-  public void setDefinicio (String newVar) {
-    definicio = newVar;
-  }
 
-  /**
-   * Get the value of definicio
-   * @return the value of definicio
-   */
-  public String getDefinicio () {
-    return definicio;
-  }
-
-  /**
-   * Set the value of polzades
-   * @param newVar the new value of polzades
-   */
-  public void setPolzades (int newVar) {
-    polzades = newVar;
-  }
-
-  /**
-   * Get the value of polzades
-   * @return the value of polzades
-   */
-  public int getPolzades () {
-    return polzades;
-  }
-
-  //
-  // Other methods
-  //
 
 }

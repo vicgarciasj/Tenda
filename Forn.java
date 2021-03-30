@@ -18,7 +18,7 @@ public class Forn extends Electrodomestic {
     public Forn(String str) {
 
       String info[]=str.split(";");
-      numRef=info[0];
+      numRef=Integer.parseInt(info[0]);
       PVP=Double.parseDouble(info[1]);
       marca=info[2];
       model=info[3];

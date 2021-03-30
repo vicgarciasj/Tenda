@@ -3,7 +3,7 @@
 import java.util.*;
 
 public class Tenda {
-    public  int opcioBusquedaPrincipal,opcioBusquedaSecundari,opcioMenuEstoc, opcioSubMenuEstoc,opcioBusquedaCompres;
+    public  int opcioBusquedaPrincipal,opcioBusquedaSecundari,opcioMenuEstoc, opcioSubMenuEstoc,opcioBusquedaCompres,numRefBorrar;
 
     public Scanner sc= new Scanner(System.in);
     public String[] menuP;
@@ -11,6 +11,7 @@ public class Tenda {
     public String[]menuAgenda;
     public String[]menuEstoc;
     public String[]menuCompres;
+    public String tip;
 
     Estoc e = new Estoc();
     Agenda a=new Agenda();
@@ -20,8 +21,6 @@ public class Tenda {
 
     public static void main (String[]args) {
         Tenda t = new Tenda();
-        //Estoc e = new Estoc();
-
 
 
         t.portada();
@@ -57,8 +56,7 @@ public class Tenda {
                     System.out.println("--------------------------------------------");
                     System.out.println("                   Estoc                    ");
                     System.out.println("--------------------------------------------");
-                    //Estoc e=new Estoc();
-                    //e.carregaElectrodomestics();
+
                     mostrarMenuEstoc();
                     int opcioME=llegirOpcMenuEstoc();
                     triaOpcioEstoc(opcioME);
@@ -106,15 +104,17 @@ public class Tenda {
                 break;
             case 3:
                 System.out.println("Donar de Baixa un Client\n");
+                mostrarClients();
                 System.out.println("Intodueix el DNI de el client que vols donar de baixa:");
-                String DNI=sc.nextLine();
-                a.baixaClient(DNI);
+                demanaDNI();
+                String opcioBC=demanaDNI();
+                a.baixaClient(opcioBC);
                 break;
             case 4:
                 Agenda ag=new Agenda();
                 System.out.println("Donar de Alta un Client\n");
                 ag.altaClient();
-//
+
                 break;
             default:
                 System.out.print("----- Valor Incorrecte -----\n--- Introdueix un nou nombre entre el 1 y el 4 : ");
@@ -139,6 +139,15 @@ public class Tenda {
                 break;
             case 3:
                 System.out.println("Esborrar Electrodomestic\n");
+                System.out.println("Quin tipus de electrodomestic vol esborrar:\n");
+
+                mostrarSubMenuEstoc();
+                int opcioB=llegirOpcSubMenuEstoc();
+                triaSubMEstoc(opcioB);
+                int ocioBr=llegirOpcBorrarElect();
+                //e.borrarElectrodomestic(opcioB,numRefBorrar);
+                //e.borrarElectrodomestic(numRefBorrar);
+
                 break;
             case 4:
                 System.out.println("Donar de Alta un Electrodomestic\n");
@@ -158,43 +167,48 @@ public class Tenda {
         return opcioBusquedaEstoc;
     }
 
-    private int triaSubMEstoc(int opcioSubMenuEstoc) {
+    private int llegirOpcBorrarElect() {
+        System.out.println(" ");
+        System.out.println("_______________________________________________________________________/");
+        System.out.println("Introdueix el Numero de referencia del electrodomestic que vol esborrar:");
+        numRefBorrar=sc.nextInt();
+        System.out.println("_______________________________________________________________________/");
+        return numRefBorrar;
+    }
 
+    private int triaSubMEstoc(int opcioSubMenuEstoc) {
 
         switch (opcioSubMenuEstoc) {
             case 1: //Estufes
+                tip="Estufa";
+
                 mostrarEstufes();
-
                 break;
-
            case 2: //Forns
-
+                tip="Forn";
                 mostrarForns();
-
                 break;
 
             case 3: //Llavadores
+                tip="Llavadora";
 
                 mostrarLlavadores();
-
                 break;
-
             case 4: // Microones
+                tip="Microones";
 
                 mostrarMicroones();
-
                 break;
-
             case 5: //Neveres
+                tip="Nevera";
 
                 mostrarNeveres();
-
-
                 break;
 
             case 6: //Televisors
-                mostrarTelevisors();
+                tip="Televisio";
 
+                mostrarTelevisors();
                 break;
 
             default:
@@ -420,6 +434,11 @@ public class Tenda {
         return opcioSubMenuEstoc;
     }
 
+    public String demanaDNI(){
+        String DNIBorra=sc.nextLine();
+        return DNIBorra;
+    }
+
 
 
     public void tornarMenu() {
@@ -465,6 +484,7 @@ public class Tenda {
             System.out.println(elec.toString(elec));
             System.out.println("___________________________________________________________________/");
 
+
         }
     }
 
@@ -500,8 +520,8 @@ public class Tenda {
 
     public void mostrarMicroones() {
         System.out.println("Microones Disponibles:\n");
-        System.out.println("NªRef --- Marca ---- Model ---- EE -- Potencia -- PVP ----- Volum -- Quantitat");
-        System.out.println("_______________________________________________________________________________");
+        System.out.println("NªRef --- Marca ---- Model ---- EE -- Potencia -- Volum ---- PVP -- Quantitat");
+        System.out.println("______________________________________________________________________________");
 
         Iterator<Electrodomestic> itermcr = e.getLlistaMicroones().iterator();
 
@@ -517,8 +537,8 @@ public class Tenda {
 
     public void mostrarNeveres() {
         System.out.println("Neveres Disponibles:\n");
-        System.out.println("NªRef --- Marca ---- Model ---- EE -- Potencia -- PVP ----- Volum -- Quantitat");
-        System.out.println("_______________________________________________________________________________");
+        System.out.println("NªRef --- Marca ---- Model ------ EE --- Alura -- Amplaria -- Fons --- Congelador --- PVP --- Quantitat");
+        System.out.println("_______________________________________________________________________________________________________");
 
 
         Iterator<Electrodomestic> iternv = e.getLlistaNeveres().iterator();
@@ -526,7 +546,7 @@ public class Tenda {
         while (iternv.hasNext()) {
             Electrodomestic elec=iternv.next();
             System.out.println(elec.toString(elec));
-            System.out.println("_______________________________________________________________________________/");
+            System.out.println("______________________________________________________________________________________________________/");
 
         }
 
@@ -534,14 +554,69 @@ public class Tenda {
 
     public void mostrarTelevisors() {
         System.out.println("Televisors Disponibles:\n");
+        System.out.println("NªRef --- Marca ----- Model ------- EE ---- Definicio -- Polzades --- PVP ---- Quantitat");
+        System.out.println("________________________________________________________________________________________");
 
         Iterator<Electrodomestic> itertv = e.getLlistaTelevisors().iterator();
 
         while (itertv.hasNext()) {
             Electrodomestic elec=itertv.next();
             System.out.println(elec.toString(elec));
-            System.out.println("_______________________________________________________________________________/");
+            System.out.println("________________________________________________________________________________________/");
 
+
+        }
+    }
+
+    public void llistarElectrodomestics() {
+
+        Iterator<Electrodomestic> iterest = e.getLlistaEstufes().iterator();
+        Iterator<Electrodomestic> iterfrn = e.getLlistaForn().iterator();
+        Iterator<Electrodomestic> iterll = e.getLlistaLlavadores().iterator();
+        Iterator<Electrodomestic> itermcr = e.getLlistaMicroones().iterator();
+        Iterator<Electrodomestic> iternv = e.getLlistaNeveres().iterator();
+        Iterator<Electrodomestic> itertv = e.getLlistaTelevisors().iterator();
+
+        while (itertv.hasNext()) {
+
+            //System.out.println(elec.toString(elec));
+            System.out.println("________________________________________________________________________________________/");
+
+        }
+        //Recorre el ArrayList de "Estufes"
+        while (iterest.hasNext()) {
+            Electrodomestic electEst=iterest.next();
+            Estufa estufa=new Estufa();
+            if (estufa.numRef==estufa.numRef);
+
+        }
+        //Recorre el ArrayList de "Forns"
+        while (iterfrn.hasNext()) {
+            Electrodomestic electFrn=iterfrn.next();
+
+        }
+
+        //Recorre el ArrayList de "Llavadores"
+        while (iterll.hasNext()) {
+            Electrodomestic electLl=iterll.next();
+
+        }
+
+        //Recorre el ArrayList de "Microones"
+        while (itermcr.hasNext()) {
+            Electrodomestic electMcr=itermcr.next();
+
+        }
+
+        //Recorre el ArrayList de "Neveres"
+        while (itermcr.hasNext()) {
+            Electrodomestic electTv=itertv.next();
+
+        }
+
+        //Recorre el ArrayList de "Televisions"
+        while (itertv.hasNext()) {
+            Electrodomestic electNv=iternv.next();
 
         }
     }

@@ -3,6 +3,7 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Iterator;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -54,7 +55,7 @@ public class Estoc {
 
     public void altaElect( Electrodomestic tipus){
       System.out.println("Introdueix el Numero de Referencia: ");
-      tipus.numRef=sc.nextLine();
+      tipus.numRef=sc.nextInt();
       System.out.println("Introdueix el Preu: ");
       tipus.PVP=sc.nextDouble();
       System.out.println("Introdueix el Marca: ");
@@ -111,22 +112,50 @@ public class Estoc {
 
 
 
-/*  public Boolean donarBaixa(int ref) {
 
-        ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
-      Iterator<Client>iterCli=a.getLlistaClients;
-      Client cl=iter.
+
+ /* public Boolean borrarElectrodomestic(int numRefBorrar) {
+
+      Iterator<Electrodomestic>iter= llistaElect.iterator();
+      Electrodomestic elec=iter;
       iter=this.tipus.iter();
       while (iter.hasNext()){
-          Client c=new Client();
-          c=iter.next();
-          if (c.NIF== c.DNI){
+          Electrodomestic ele;
+         // Client c=new Client();
+          ele=iter.next();
+          if (numRefBorrar== c.DNI){
               this.llistaCli.remove(c);
               return true;
           }
       }
       return false;
   }*/
+
+    /*public Boolean borrarElectrodomestic(int opcioBorrar, int numRefBorrar) {
+
+        switch (opcioBorrar) {
+
+            case 1: //Borrar estufa
+
+            Iterator<Electrodomestic> iter = llistaEstufes.iterator();
+            Electrodomestic elec =iter.next();
+                while (iter.hasNext()) {
+                    Electrodomestic est;
+                    est = iter.next();
+                    Estufa estufa=new Estufa();
+                    if (numRefBorrar == estufa.numRef) {
+                        llistaEstufes.remove(est);
+
+                        return true;
+                    }
+                    return false;
+                }
+                break;
+
+            case 2:
+        }
+        return null;
+    }*/
 
     /**
      *

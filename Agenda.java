@@ -72,12 +72,14 @@ public class Agenda {
         Iterator<Client>iterCli=getLlistaClients().iterator();
 
         while (iterCli.hasNext()){
-            Client c=(Client) iterCli.next();
+            Client c=iterCli.next();
             if (c.DNI.equals(NIF)){
                 this.llistaCli.remove(c);
+                System.out.println("Client Esborrat");
                 return true;
             }
         }
+        System.out.println("ERROR***Client NO Esborrat***");
         return false;
 
     }
