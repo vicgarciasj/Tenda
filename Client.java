@@ -27,12 +27,6 @@ public class Client {
         DNI=info[3];
         NIF=DNI;
 
-    this.nom=nom;
-    this.cognom1=cognom1;
-    this.cognom2=cognom2;
-    this.NIF=NIF;
-    this.NIF=DNI;
-
   }
 
   public String toString(){

@@ -107,18 +107,13 @@ public class Tenda {
             case 3:
                 System.out.println("Donar de Baixa un Client\n");
                 System.out.println("Intodueix el DNI de el client que vols donar de baixa:");
-                Client cl=new Client();
-                cl.DNI= cl.DNI;
-                cl.DNI=sc.nextLine();
-                Agenda a=new Agenda();
-                a.baixaClient(cl.DNI);
+                String DNI=sc.nextLine();
+                a.baixaClient(DNI);
                 break;
             case 4:
                 Agenda ag=new Agenda();
-                Client cli=new Client();
                 System.out.println("Donar de Alta un Client\n");
-                ag.altaClient(cli);
-
+                ag.altaClient();
 
                 break;
             default:
@@ -170,61 +165,36 @@ public class Tenda {
             case 1: //Estufes
                 mostrarEstufes();
 
-                Estufa est=new Estufa();
-                if (est.quantitat == 1) {
-                    System.out.println("Hi ha " + est.getQuantitatEstufes() + " Estufa en aquest moment disponibles.");
-                } else {
-                    System.out.println("Hi ha " + est.quantitat + " Estufes en aquest moment disponibles.");
-                }
-
                 break;
 
            case 2: //Forns
 
                 mostrarForns();
 
-                /*if (quantitatProducte == 1) {
-                    System.out.println("Hi ha " + quantitatProducte + " Forn en aquest moment disponibles.");
-                } else {
-                    System.out.println("Hi ha " + quantitatProducte + " Forns en aquest moment disponibles.");
-                }*/
                 break;
 
             case 3: //Llavadores
 
                 mostrarLlavadores();
 
-               /* if (quantitatProducte == 1) {
-                    System.out.println("Hi ha " + quantitatProducte + " Llavadora en aquest moment disponibles.");
-                } else {
-                    System.out.println("Hi ha " + quantitatProducte + " Llavadores en aquest moment disponibles.");
-                }*/
                 break;
 
             case 4: // Microones
 
                 mostrarMicroones();
 
-                //System.out.println("Hi ha " + quantitatProducte + " Microones en aquest moment disponibles.");
                 break;
 
             case 5: //Neveres
 
                 mostrarNeveres();
 
-                /*if (quantitatProducte == 1) {
-                    System.out.println("Hi ha " + quantitatProducte + " Nevera en aquest moment disponibles.");
-                } else {
-                    System.out.println("Hi ha " + quantitatProducte + " Neveres en aquest moment disponibles.");
-                }*/
+
                 break;
 
             case 6: //Televisors
-                /*if (quantitatProducte == 1) {
-                    System.out.println("Hi ha " + quantitatProducte + " Televisor en aquest moment disponibles.");
-                } else {
-                    System.out.println("Hi ha " + quantitatProducte + " Televisors en aquest moment disponibles.");
-                }*/
+                mostrarTelevisors();
+
                 break;
 
             default:
@@ -467,13 +437,10 @@ public class Tenda {
 
     }
 
-    public void altCli(Client cli){
 
-        a.llistaCli.add(cli);
-    }
 
     public void mostrarClients(){
-        System.out.println("Nom -- Cognoms -------- NIF\n");
+        System.out.println("Nom ----- Cognoms -------- DNI\n");
 
         ArrayList<Client> mostrarLlistaCli = a.getLlistaClients();
 
@@ -481,7 +448,7 @@ public class Tenda {
 
         while (iterCli.hasNext()) {
             System.out.println(iterCli.next() + " ");
-            System.out.println("_________________________________/");
+            System.out.println("_____________________________________/");
         }
     }
 
@@ -489,41 +456,43 @@ public class Tenda {
     public void mostrarEstufes() {
 
         System.out.println("Estufes Disponibles:\n");
-        System.out.println("NªRef --- Marca --- Modelo -- EE ---- PVP --- Quantitat\n");
-
-        Iterator<Electrodomestic> iterEst = e.llistaEstufes.iterator();
+        System.out.println("NªRef --- Marca --- Model --- EE --- Potencia --- PVP --- Quantitat");
+        System.out.println("______________________________________________________________________");
+        Iterator<Electrodomestic> iterEst = e.getLlistaEstufes().iterator();
 
         while (iterEst.hasNext()) {
             Electrodomestic elec=iterEst.next();
             System.out.println(elec.toString(elec));
-            System.out.println("______________________________________________________/");
+            System.out.println("___________________________________________________________________/");
 
         }
     }
 
     public void mostrarForns() {
         System.out.println("Forns Disponibles:\n");
-
-        Iterator<Electrodomestic> iterFrn = e.llistaForns.iterator();
+        System.out.println("NªRef --- Marca --- Model -- EE -- Potencia -- PVP ----- Volum -- Quantitat");
+        System.out.println("_____________________________________________________________________________");
+        Iterator<Electrodomestic> iterFrn = e.getLlistaForn().iterator();
 
         while (iterFrn.hasNext()) {
             Electrodomestic elec=iterFrn.next();
             System.out.println(elec.toString(elec));
-            System.out.println("_________________________________/");
+            System.out.println("___________________________________________________________________________/");
 
         }
     }
 
     public void mostrarLlavadores() {
         System.out.println("Llavadores Disponibles:\n");
-        Estoc e=new Estoc();
-        ArrayList<Electrodomestic> mostrarLlistaLlavadores = e.getLlistaLlavadores();
+        System.out.println("NªRef --- Marca --- Model --- EE -- Volum ----- PVP  --- Quantitat");
+        System.out.println("__________________________________________________________________");
 
-        Iterator<Electrodomestic> iterll = mostrarLlistaLlavadores.iterator();
+        Iterator<Electrodomestic> iterll = e.getLlistaLlavadores().iterator();
 
         while (iterll.hasNext()) {
-            System.out.println(iterll.next() + " ");
-            System.out.println("_________________________________/");
+            Electrodomestic elec=iterll.next();
+            System.out.println(elec.toString(elec));
+            System.out.println("________________________________________________________________/");
 
 
         }
@@ -531,16 +500,15 @@ public class Tenda {
 
     public void mostrarMicroones() {
         System.out.println("Microones Disponibles:\n");
+        System.out.println("NªRef --- Marca ---- Model ---- EE -- Potencia -- PVP ----- Volum -- Quantitat");
+        System.out.println("_______________________________________________________________________________");
 
-        Estoc e=new Estoc();
-        ArrayList<Electrodomestic> mostrarLlistaMicroones = e.getLlistaMicroones();
-
-        Iterator<Electrodomestic> itermcr = mostrarLlistaMicroones.iterator();
+        Iterator<Electrodomestic> itermcr = e.getLlistaMicroones().iterator();
 
         while (itermcr.hasNext()) {
-            System.out.println(itermcr.next() + " ");
-            System.out.println("_________________________________/");
-
+            Electrodomestic elec=itermcr.next();
+            System.out.println(elec.toString(elec));
+            System.out.println("_______________________________________________________________________________/");
 
         }
     }
@@ -549,15 +517,16 @@ public class Tenda {
 
     public void mostrarNeveres() {
         System.out.println("Neveres Disponibles:\n");
+        System.out.println("NªRef --- Marca ---- Model ---- EE -- Potencia -- PVP ----- Volum -- Quantitat");
+        System.out.println("_______________________________________________________________________________");
 
-        Estoc e=new Estoc();
-        ArrayList<Electrodomestic> mostrarLlistaNeveres = e.getLlistaNeveres();
 
-        Iterator<Electrodomestic> iternv = mostrarLlistaNeveres.iterator();
+        Iterator<Electrodomestic> iternv = e.getLlistaNeveres().iterator();
 
         while (iternv.hasNext()) {
-            System.out.println(iternv.next() + " ");
-            System.out.println("_________________________________/");
+            Electrodomestic elec=iternv.next();
+            System.out.println(elec.toString(elec));
+            System.out.println("_______________________________________________________________________________/");
 
         }
 
@@ -566,14 +535,12 @@ public class Tenda {
     public void mostrarTelevisors() {
         System.out.println("Televisors Disponibles:\n");
 
-        Estoc e=new Estoc();
-        ArrayList<Electrodomestic> mostrarLlistaTelevisors = e.getLlistaTelevisors();
-
-        Iterator<Electrodomestic> itertv = mostrarLlistaTelevisors.iterator();
+        Iterator<Electrodomestic> itertv = e.getLlistaTelevisors().iterator();
 
         while (itertv.hasNext()) {
-            System.out.println(itertv.toString().lines() + " ");
-            System.out.println("_________________________________/");
+            Electrodomestic elec=itertv.next();
+            System.out.println(elec.toString(elec));
+            System.out.println("_______________________________________________________________________________/");
 
 
         }

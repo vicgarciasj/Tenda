@@ -14,7 +14,7 @@ public class Nevera extends Electrodomestic {
   public int alsada;
   public int amplaria;
   public int fons;
-  public boolean congelador;
+  public String congelador;
   
   //
   // Constructors
@@ -26,16 +26,16 @@ public class Nevera extends Electrodomestic {
 
   public Nevera(String str) {
 
-    String infoNevera[]=str.split(";");
-    this.numRef=infoNevera[0];
-    //this.PVP=Integer.parseInt(infoNevera[1]);
-    this.marca=infoNevera[2];
-    this.model=infoNevera[3];
-    this.EE=infoNevera[4];
-    this.quantitat=Integer.parseInt(infoNevera[5]);
-    this.alsada=Integer.parseInt(infoNevera[6]);
-    this.amplaria=Integer.parseInt(infoNevera[7]);
-    this.congelador=Boolean.getBoolean(infoNevera[8]);
+    String info[]=str.split(";");
+    this.numRef=info[0];
+    this.PVP=Double.parseDouble(info[1]);
+    this.marca=info[2];
+    this.model=info[3];
+    this.EE=info[4];
+    this.quantitat=Integer.parseInt(info[5]);
+    this.alsada=Integer.parseInt(info[6]);
+    this.amplaria=Integer.parseInt(info[7]);
+    this.congelador=info[8];
 
 
     this.numRef=numRef;
@@ -50,7 +50,7 @@ public class Nevera extends Electrodomestic {
 
   }
 
-  public String toStringNevera(){
+  public String toString(Electrodomestic elec){
 
     return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat+" "+this.alsada+" "+this.amplaria+" "+this.congelador;
   }
@@ -102,7 +102,7 @@ public class Nevera extends Electrodomestic {
    * Set the value of congelador
    * @param newVar the new value of congelador
    */
-  public void setCongelador (boolean newVar) {
+  public void setCongelador (String newVar) {
     congelador = newVar;
   }
 
@@ -110,7 +110,7 @@ public class Nevera extends Electrodomestic {
    * Get the value of congelador
    * @return the value of congelador
    */
-  public boolean getCongelador () {
+  public String getCongelador () {
     return congelador;
   }
 

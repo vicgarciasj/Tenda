@@ -9,22 +9,22 @@ public class Microones extends Electrodomestic {
 
 
   public int potencia;
-  public double volum;
+  public int volum;
 
   public  Microones(){
 
   }
   public Microones(String str) {
 
-    String infoMicro[]=str.split(";");
-    this.numRef=infoMicro[0];
-    //this.PVP=Integer.parseInt(infoMicro[1]);
-    this.marca=infoMicro[2];
-    this.model=infoMicro[3];
-    this.EE=infoMicro[4];
-    this.quantitat=Integer.parseInt(infoMicro[5]);
-    this.potencia=Integer.parseInt(infoMicro[6]);
-    this.volum=Integer.parseInt(infoMicro[7]);
+    String info[]=str.split(";");
+    this.numRef=info[0];
+    this.PVP=Double.parseDouble(info[1]);
+    this.marca=info[2];
+    this.model=info[3];
+    this.EE=info[4];
+    this.quantitat=Integer.parseInt(info[5]);
+    this.potencia=Integer.parseInt(info[6]);
+    this.volum=Integer.parseInt(info[7]);
 
     this.numRef=numRef;
     this.PVP=PVP;
@@ -34,6 +34,11 @@ public class Microones extends Electrodomestic {
     this.quantitat=quantitat;
     this.potencia=potencia;
     this.volum=volum;
+  }
+
+  public String toString(Electrodomestic elec){
+
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"W     "+this.PVP+"€     "+this.volum+"L      "+this.quantitat;
   }
 
   public void setPotencia (int newVar) {
@@ -52,7 +57,7 @@ public class Microones extends Electrodomestic {
    * Set the value of volum
    * @param newVar the new value of volum
    */
-  public void setVolum (double newVar) {
+  public void setVolum (int newVar) {
     volum = newVar;
   }
 

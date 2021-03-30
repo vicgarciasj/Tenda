@@ -1,4 +1,6 @@
 
+
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -8,6 +10,7 @@ import java.util.ArrayList;
  * Class Estoc
  */
 public class Estoc {
+
 
     private Scanner sc=new Scanner(System.in);
     private String tip;
@@ -108,10 +111,11 @@ public class Estoc {
 
 
 
-  /*public Boolean donarBaixa(int ref) {
+/*  public Boolean donarBaixa(int ref) {
 
         ArrayList<Electrodomestic> llistaElect = new ArrayList<Electrodomestic>();
-      Iterator<Client>iter;
+      Iterator<Client>iterCli=a.getLlistaClients;
+      Client cl=iter.
       iter=this.tipus.iter();
       while (iter.hasNext()){
           Client c=new Client();
@@ -173,8 +177,8 @@ public class Estoc {
 
             while (sc.hasNextLine()){
                 String str= sc.nextLine();
-                Forn fr= new Forn(str);
-                llistaForns.add(fr);
+                Forn forn= new Forn(str);
+                llistaForns.add(forn);
             }
             sc.close();
         }catch (FileNotFoundException e){
@@ -225,6 +229,7 @@ public class Estoc {
     }
 
     public ArrayList<Electrodomestic> getLlistaLlavadores() {
+
         return llistaLlavadores;
     }
 

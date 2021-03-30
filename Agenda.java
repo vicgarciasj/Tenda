@@ -19,8 +19,7 @@ public class Agenda {
 
 
     public Agenda () {
-
-        llistaCli.add(carregaClients());
+        carregaClients();
 
     }
 
@@ -45,9 +44,10 @@ public class Agenda {
     }
 
 
-    public void altaClient(Client cli) {
+    public void altaClient() {
         Scanner sc= new Scanner(System.in);
-        Tenda t=new Tenda();
+
+        Client cli=new Client();
         cli =new Client();
         System.out.print("Introdueix nom: ");
         cli.nom=sc.nextLine();
@@ -60,7 +60,8 @@ public class Agenda {
         System.out.println("██████████████████████████████████████████████");
         System.out.println("Nou Client: "+cli.nom+" "+cli.cognom1+" "+cli.cognom2+" amb DNI:"+cli.DNI);
         System.out.println("██████████████████████████████████████████████");
-        t.altCli(cli);
+
+        llistaCli.add(cli);
 
     }
 
@@ -68,12 +69,11 @@ public class Agenda {
 
 
     public Boolean baixaClient(String NIF) {
-        Iterator<Client>iter;
-        iter=this.llistaCli.iterator();
-        while (iter.hasNext()){
-            Client c=new Client();
-            c=iter.next();
-            if (c.NIF== c.DNI){
+        Iterator<Client>iterCli=getLlistaClients().iterator();
+
+        while (iterCli.hasNext()){
+            Client c=(Client) iterCli.next();
+            if (c.DNI.equals(NIF)){
                 this.llistaCli.remove(c);
                 return true;
             }

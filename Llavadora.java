@@ -16,14 +16,14 @@ public class Llavadora extends Electrodomestic {
 
   public Llavadora(String str) {
 
-   /* String infoLlavadora[]=str.split(";");
-    this.numRef=infoLlavadora[0];
-    this.PVP=Integer.parseInt(infoLlavadora[1]);
-    this.marca=infoLlavadora[2];
-    this.model=infoLlavadora[3];
-    this.EE=infoLlavadora[4];
-    this.quantitat=Integer.parseInt(infoLlavadora[5]);
-    this.volum=Integer.parseInt(infoLlavadora[6]);*/
+    String info[]=str.split(";");
+    numRef=info[0];
+    PVP=Double.parseDouble(info[1]);
+    marca=info[2];
+    model=info[3];
+    EE=info[4];
+    quantitat=Integer.parseInt(info[5]);
+    volum=Integer.parseInt(info[6]);
 
 
     this.numRef=numRef;
@@ -36,9 +36,9 @@ public class Llavadora extends Electrodomestic {
 
   }
 
-  public String toStringLlavadora(){
+  public String toString(Electrodomestic elect){
 
-    return this.numRef+" "+this.PVP+" "+this.marca+" "+this.model+" "+this.EE+" "+this.quantitat;
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.volum+"L      "+this.PVP+"€      "+this.quantitat;
   }
 
   public void setVolum (int newVar) {

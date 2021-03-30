@@ -1,4 +1,4 @@
-374353;614.99;Sony;SNY0237;B;3;FullHD;55;
-235354;879.95;Xiaomi;MiTV;A;5;FullHD+;60;
-245542;598.99;Samsung;SuperLed;A;UHD;42
-534985;999.95;LG;UltraOled;A;4;QLED;55;
+374353;614.99;Sony   ;SNY0237  ;B;3;FullHD ;55;
+235354;879.95;Xiaomi ;MiTV     ;A;5;FullHD+;60;
+245542;598.99;Samsung;SuperLed ;A;2;UHD    ;42
+534985;999.95;LG     ;UltraOled;A;4;QLED   ;55;

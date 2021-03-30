@@ -1,18 +1,10 @@
-
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Scanner;
-
 /**
  * Class Estufa
  */
 public class Estufa extends Electrodomestic{
 
 
-  public String infoEst[];
+
   public String potencia;
 
 
@@ -21,14 +13,15 @@ public class Estufa extends Electrodomestic{
   }
   public Estufa ( String str) {
 
-    String infoEst[]=str.split(";");
-    numRef=infoEst[0];
-    PVP=Double.parseDouble(infoEst[1]);
-    marca=infoEst[2];
-    model=infoEst[3];
-    model=infoEst[3];
-    EE=infoEst[4];
-    quantitat=Integer.parseInt(infoEst[5]);
+    String info[]=str.split(";");
+    numRef=info[0];
+    PVP=Double.parseDouble(info[1]);
+    marca=info[2];
+    model=info[3];
+    model=info[3];
+    EE=info[4];
+    quantitat=Integer.parseInt(info[5]);
+    potencia=info[6];
 
 
 
@@ -43,7 +36,10 @@ public class Estufa extends Electrodomestic{
 
   }
 
+  public String toString(Electrodomestic elec){
 
+    return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"       "+this.PVP+"€      "+this.quantitat;
+  }
 
 
 
@@ -53,7 +49,7 @@ public class Estufa extends Electrodomestic{
   }
 
 
-  public String getPotencia () {
+  public String getPotenciaEst () {
     return potencia;
   }
 
