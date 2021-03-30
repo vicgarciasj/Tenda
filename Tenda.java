@@ -145,6 +145,7 @@ public class Tenda {
                 int opcioB=llegirOpcSubMenuEstoc();
                 triaSubMEstoc(opcioB);
                 int ocioBr=llegirOpcBorrarElect();
+                e.llistarElectrodomestics(ocioBr);
                 //e.borrarElectrodomestic(opcioB,numRefBorrar);
                 //e.borrarElectrodomestic(numRefBorrar);
 
@@ -176,7 +177,7 @@ public class Tenda {
         return numRefBorrar;
     }
 
-    private int triaSubMEstoc(int opcioSubMenuEstoc) {
+    private int triaSubMEstoc(int opcioSubMenuEstoc) {  //Ens permet triar la opcio per a mostrar els diferents tipus de electrodomestic y veure les caracteristiques
 
         switch (opcioSubMenuEstoc) {
             case 1: //Estufes
@@ -242,7 +243,7 @@ public class Tenda {
 
 
 
-    private void mostrarSubMenuEstoc() {
+    private void mostrarSubMenuEstoc() {    //Imprimeix el sub-menu de l'Estoc
         carregaMEstoc();
         for (int i = 0; i < mEstoc.length; i++) {
 
@@ -253,7 +254,7 @@ public class Tenda {
         }
     }
 
-    private void mostrarMenuEstoc() {
+    private void mostrarMenuEstoc() {   //Imprimeix el menu de l'Estoc
             carregaMEstoc();
         for (int i = 0; i < menuEstoc.length; i++) {
 
@@ -264,7 +265,7 @@ public class Tenda {
         }
     }
 
-    private void mostraMenuCompres() {
+    private void mostraMenuCompres() {  //Imprimeix el menu de les Compres
             carregaMCompres();
         for (int i = 0; i < menuCompres.length; i++) {
 
@@ -275,7 +276,7 @@ public class Tenda {
         }
     }
 
-    private void mostrarMenuAgenda() {
+    private void mostrarMenuAgenda() { //Imprimeix el menu de la Agenda
             carregaMAgenda();
         for (int i = 0; i < menuAgenda.length; i++) {
 
@@ -568,58 +569,6 @@ public class Tenda {
         }
     }
 
-    public void llistarElectrodomestics() {
-
-        Iterator<Electrodomestic> iterest = e.getLlistaEstufes().iterator();
-        Iterator<Electrodomestic> iterfrn = e.getLlistaForn().iterator();
-        Iterator<Electrodomestic> iterll = e.getLlistaLlavadores().iterator();
-        Iterator<Electrodomestic> itermcr = e.getLlistaMicroones().iterator();
-        Iterator<Electrodomestic> iternv = e.getLlistaNeveres().iterator();
-        Iterator<Electrodomestic> itertv = e.getLlistaTelevisors().iterator();
-
-        while (itertv.hasNext()) {
-
-            //System.out.println(elec.toString(elec));
-            System.out.println("________________________________________________________________________________________/");
-
-        }
-        //Recorre el ArrayList de "Estufes"
-        while (iterest.hasNext()) {
-            Electrodomestic electEst=iterest.next();
-            Estufa estufa=new Estufa();
-            if (estufa.numRef==estufa.numRef);
-
-        }
-        //Recorre el ArrayList de "Forns"
-        while (iterfrn.hasNext()) {
-            Electrodomestic electFrn=iterfrn.next();
-
-        }
-
-        //Recorre el ArrayList de "Llavadores"
-        while (iterll.hasNext()) {
-            Electrodomestic electLl=iterll.next();
-
-        }
-
-        //Recorre el ArrayList de "Microones"
-        while (itermcr.hasNext()) {
-            Electrodomestic electMcr=itermcr.next();
-
-        }
-
-        //Recorre el ArrayList de "Neveres"
-        while (itermcr.hasNext()) {
-            Electrodomestic electTv=itertv.next();
-
-        }
-
-        //Recorre el ArrayList de "Televisions"
-        while (itertv.hasNext()) {
-            Electrodomestic electNv=iternv.next();
-
-        }
-    }
 
 
 
