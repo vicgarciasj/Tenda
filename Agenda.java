@@ -4,7 +4,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -44,7 +43,7 @@ public class Agenda {
     }
 
 
-    public void altaClient() {
+    public Client altaClient() {
         Scanner sc= new Scanner(System.in);
 
         Client cli=new Client();
@@ -61,8 +60,12 @@ public class Agenda {
         System.out.println("Nou Client: "+cli.nom+" "+cli.cognom1+" "+cli.cognom2+" amb DNI:"+cli.DNI);
         System.out.println("██████████████████████████████████████████████");
 
-        llistaCli.add(cli);
+        return cli;
 
+    }
+
+    public void altaNouClient(Client cli){
+        llistaCli.add(cli);
     }
 
 

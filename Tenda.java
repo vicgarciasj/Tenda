@@ -113,7 +113,9 @@ public class Tenda {
             case 4:
                 Agenda ag=new Agenda();
                 System.out.println("Donar de Alta un Client\n");
-                ag.altaClient();
+                //a.altaClient();
+                Client cli= ag.altaClient();
+                a.altaNouClient(cli);
 
                 break;
             default:
