@@ -29,7 +29,9 @@ public class Tenda {
             t.mostrarMenuPrincipal();
             int opcio = t.llegirOpcioPrincipal();
             t.triaOpcioPrincipal(opcio);
-            t.tornarMenu();
+            if(!(t.opcioBusquedaPrincipal==4)) {
+                t.tornarMenu();
+            }
 
         } while (t.opcioBusquedaPrincipal != 4);{
             t.sc.close();
@@ -66,7 +68,7 @@ public class Tenda {
                     System.out.println("--------------------------------------------");
                     System.out.println("                  Compres                   ");
                     System.out.println("--------------------------------------------");
-
+                    Compra compr=new Compra();
                     mostraMenuCompres();
                     int opcioC=llegirOpcioCompres();
                     triaOpcioCompres(opcioC);
@@ -75,7 +77,7 @@ public class Tenda {
                 case 4:
                     System.out.println("Eixir del programa\n");
                     System.out.println("--------------------------------------------");
-                    System.out.println("              Fi de el programa             ");
+                    System.out.println("                Fi del programa             ");
                     System.out.println("--------------------------------------------");
 
                     break;
@@ -101,19 +103,25 @@ public class Tenda {
                 break;
             case 2:
                 System.out.println("Editar Clients\n");
+                mostrarClients();
+                System.out.println("Intodueix el DNI de el client que vol editar:");
+                demanaDNI();
+                String dniCli=demanaDNI();
+                a.editaClient(dniCli);
+                mostrarClients();
+
                 break;
             case 3:
                 System.out.println("Donar de Baixa un Client\n");
                 mostrarClients();
-                System.out.println("Intodueix el DNI de el client que vols donar de baixa:");
+                System.out.println("Intodueix el DNI de el client que vol donar de baixa:");
                 demanaDNI();
-                String opcioBC=demanaDNI();
-                a.baixaClient(opcioBC);
+                String opcioBC=demanaDNI();a.baixaClient(opcioBC);
+
                 break;
             case 4:
                 Agenda ag=new Agenda();
                 System.out.println("Donar de Alta un Client\n");
-                //a.altaClient();
                 Client cli= ag.altaClient();
                 a.altaNouClient(cli);
 
@@ -141,15 +149,14 @@ public class Tenda {
                 break;
             case 3:
                 System.out.println("Esborrar Electrodomestic\n");
-                System.out.println("Quin tipus de electrodomestic vol esborrar:\n");
 
+                System.out.println("Quin tipus de electrodomestic vol esborrar:\n");
                 mostrarSubMenuEstoc();
-                int opcioB=llegirOpcSubMenuEstoc();
-                triaSubMEstoc(opcioB);
-                int ocioBr=llegirOpcBorrarElect();
-                e.llistarElectrodomestics(ocioBr);
-                //e.borrarElectrodomestic(opcioB,numRefBorrar);
-                //e.borrarElectrodomestic(numRefBorrar);
+                int opcioBr=llegirOpcSubMenuEstoc();
+                triaSubMEstoc(opcioBr);
+                System.out.print("Intodueix el NªReferencia  *"+tip+"* que vol esborar: ");
+                int numRef=demanaNumRef();
+                e.bElectrodomestic(opcioBr,numRef);
 
                 break;
             case 4:
@@ -179,7 +186,7 @@ public class Tenda {
         return numRefBorrar;
     }
 
-    private int triaSubMEstoc(int opcioSubMenuEstoc) {  //Ens permet triar la opcio per a mostrar els diferents tipus de electrodomestic y veure les caracteristiques
+    public int triaSubMEstoc(int opcioSubMenuEstoc) {  //Ens permet triar la opcio per a mostrar els diferents tipus de electrodomestic y veure les caracteristiques
 
         switch (opcioSubMenuEstoc) {
             case 1: //Estufes
@@ -440,6 +447,12 @@ public class Tenda {
     public String demanaDNI(){
         String DNIBorra=sc.nextLine();
         return DNIBorra;
+    }
+
+    public int demanaNumRef(){
+        int numRefBorra=sc.nextInt();
+        return numRefBorra;
+
     }
 
 

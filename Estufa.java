@@ -25,15 +25,6 @@ public class Estufa extends Electrodomestic{
 
 
 
-    this.numRef=numRef;
-    this.PVP=PVP;
-    this.marca=marca;
-    this.model=model;
-    this.EE=EE;
-    this.quantitat=quantitat;
-    this.potencia=potencia;
-
-
   }
 
   public String toString(Electrodomestic elec){

@@ -3,7 +3,6 @@
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -45,7 +44,7 @@ public class Estoc {
     }
 
 
-    public void altaElect(Electrodomestic tipus) {
+    public Electrodomestic altaElect(Electrodomestic tipus) {
         System.out.println("Introdueix el Numero de Referencia: ");
         tipus.numRef = sc.nextInt();
         System.out.println("Introdueix el Preu: ");
@@ -62,6 +61,7 @@ public class Estoc {
         System.out.println("██████████████████████████████████████████████");
         System.out.println("Nou Electrodomestic :\nModel: " + tipus.model + "\nNumero de Referencia: " + tipus.numRef + "\nPreu: " + tipus.PVP + "€" + "\nNumero de Unitats");
         System.out.println("Article guardat en " + tip);
+        return tipus;
 
     }
 
@@ -123,7 +123,7 @@ public class Estoc {
       return false;
   }*/
 
-    /*public Boolean borrarElectrodomestic(int opcioBorrar, int numRefBorrar) {
+    public Boolean borrarElectrodomestic(int opcioBorrar, int numRefBorrar) {
 
         switch (opcioBorrar) {
 
@@ -147,7 +147,7 @@ public class Estoc {
             case 2:
         }
         return null;
-    }*/
+    }
 
     /**
      * Carrega Estufes
@@ -347,57 +347,86 @@ public class Estoc {
         return llistaTelevisors;
     }
 
-    public Electrodomestic llistarElectrodomestics( int numRefBorrar) {
-
-        Iterator<Electrodomestic> iterest = getLlistaEstufes().iterator();
-        Iterator<Electrodomestic> iterfrn = getLlistaForn().iterator();
-        Iterator<Electrodomestic> iterll = getLlistaLlavadores().iterator();
-        Iterator<Electrodomestic> itermcr = getLlistaMicroones().iterator();
-        Iterator<Electrodomestic> iternv = getLlistaNeveres().iterator();
-        Iterator<Electrodomestic> itertv = getLlistaTelevisors().iterator();
 
 
-        //Recorre el ArrayList de "Estufes"
-        while (iterest.hasNext()) {
-            Electrodomestic elc= iterest.next();
-            if (numRefBorrar == elc.numRef) {
-                this.llistaEstufes.remove(elc);
-                System.out.println("Estufa Esborrat");
+    public int bElectrodomestic(int opcioBr,int numRef) {
 
+
+        if (opcioBr == 1) { //Tria y esborra la estufa
+
+            Iterator<Electrodomestic> iterEst = getLlistaEstufes().iterator();
+            while (iterEst.hasNext()){
+                Electrodomestic elec=iterEst.next();
+                if (numRef== elec.numRef) {
+                    this.llistaEstufes.remove(elec);
+                    System.out.println("Estufa esborrada");
+                    break;
+
+                }
             }
-           /* //Recorre el ArrayList de "Forns"
-            while (iterfrn.hasNext()) {
-                Electrodomestic electFrn = iterfrn.next();
-
-            }
-
-            //Recorre el ArrayList de "Llavadores"
-            while (iterll.hasNext()) {
-                Electrodomestic electLl = iterll.next();
-
-            }
-
-            //Recorre el ArrayList de "Microones"
-            while (itermcr.hasNext()) {
-                Electrodomestic electMcr = itermcr.next();
-
-            }
-
-            //Recorre el ArrayList de "Neveres"
-            while (itermcr.hasNext()) {
-                Electrodomestic electTv = itertv.next();
-
-            }
-
-            //Recorre el ArrayList de "Televisions"
-            while (itertv.hasNext()) {
-                Electrodomestic electNv = iternv.next();
-
-            }*/
 
         }
-       return null;
 
+        if (opcioBr == 2) {//Tria y esborra el forn
+
+            Iterator<Electrodomestic> iterFrn = getLlistaForn().iterator();
+            while (iterFrn.hasNext()){
+                Electrodomestic elec=iterFrn.next();
+                if (numRef== elec.numRef) {
+                    this.llistaForns.remove(elec);
+                    System.out.println("Forn esborrat");
+                    break;
+                }
+            }
+
+
+        }
+        if (opcioBr == 3) { //Tria y esborra la llavadora
+            Iterator<Electrodomestic> iterll = getLlistaLlavadores().iterator();
+            while (iterll.hasNext()){
+                Electrodomestic elec=iterll.next();
+                if (numRef== elec.numRef) {
+                    this.llistaLlavadores.remove(elec);
+                    System.out.println("Llavadora esborrada");
+                    break;
+                }
+            }
+        }
+        if (opcioBr == 4) {
+            Iterator<Electrodomestic> itermcr = getLlistaMicroones().iterator();
+            while (itermcr.hasNext()){
+                Electrodomestic elec=itermcr.next();
+                if (numRef== elec.numRef) {
+                    this.llistaMicroones.remove(elec);
+                    System.out.println("Microones esborrat");
+                    break;
+                }
+            }
+        }
+        if (opcioBr == 5) {
+            Iterator<Electrodomestic> iternv = getLlistaNeveres().iterator();
+            while (iternv.hasNext()){
+                Electrodomestic elec=iternv.next();
+                if (numRef== elec.numRef) {
+                    this.llistaNevera.remove(elec);
+                    System.out.println("Nevera esborrada");
+                    break;
+                }
+            }
+        }
+        if (opcioBr == 6) {
+            Iterator<Electrodomestic> itertv = getLlistaTelevisors().iterator();
+            while (itertv.hasNext()){
+                Electrodomestic elec=itertv.next();
+                if (numRef== elec.numRef) {
+                    this.llistaTelevisors.remove(elec);
+                    System.out.println("Televisio esborrada");
+                    break;
+                }
+            }
+
+        }
+        return opcioBr;
     }
 }
 
