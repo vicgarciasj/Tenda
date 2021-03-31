@@ -39,7 +39,7 @@ public class Tenda {
 
     }
 
-
+//
 
     public int triaOpcioPrincipal(int opcioBusquedaPrincipal){ //Ens permet escollir la opcio principal
 

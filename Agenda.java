@@ -86,7 +86,7 @@ public class Agenda {
         return false;
 
     }
-
+//
 
     public boolean editaClient(String dni){
         int num=0;

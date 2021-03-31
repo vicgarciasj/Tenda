@@ -28,7 +28,7 @@ public class Compra extends Electrodomestic {
 
   }
 
-
+//
   public String getData () {
     this.data=data;
     return data;

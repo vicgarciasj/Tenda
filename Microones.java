@@ -33,7 +33,7 @@ public class Microones extends Electrodomestic {
 
     return this.numRef+"    "+this.marca+"     "+this.model+"      "+this.EE+"      "+this.potencia+"W      "+this.volum+"L      "+this.PVP+"€      "+this.quantitat;
   }
-
+//
   public void setPotencia (int newVar) {
     potencia = newVar;
   }

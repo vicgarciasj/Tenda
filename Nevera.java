@@ -40,7 +40,7 @@ public class Nevera extends Electrodomestic {
 
 
   }
-
+//
   public String toString(Electrodomestic elec){
 
     return this.numRef+"    "+this.marca+"    "+this.model+"     "+this.EE+"      "+this.alsada+"cm      "+this.amplaria+"cm     "+this.fons+"cm        "+this.congelador+"        "+this.PVP+"€     "+this.quantitat;
